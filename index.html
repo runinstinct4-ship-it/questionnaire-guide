@@ -903,26 +903,30 @@
             };
 
             // Envoi de l'email via EmailJS
-        try {
-            await emailjs.send("service_5vtkmvj", "template_bl42agu", emailData);
-            console.log("✅ Email envoyé avec succès!");
-            
-            // On affiche le succès SEULEMENT si l'email est bien parti
-            form.style.display = 'none';
-            resultsDiv.classList.add('show');
-            showSuccessNotification();
-            
-            // Scroll vers les résultats
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            try {
+                // On envoie les données (Ton ID est le bon, on ne touche plus !)
+                await emailjs.send("service_5vtkmvj", "template_bl42agu", emailData);
+                
+                // Si l'envoi réussit, on affiche les résultats et la belle notif
+                form.style.display = 'none';
+                resultsDiv.classList.add('show');
+                showSuccessNotification();
+                
+                // Scroll fluide vers le haut pour voir le résultat
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
 
-        } catch (error) {
-            console.error("❌ Erreur lors de l'envoi:", error);
-            // Ceci affichera l'erreur exacte sur votre écran
-            alert("Une erreur empêche l'envoi : " + JSON.stringify(error));
-        }
+            } catch (error) {
+                // En cas d'erreur, on le note juste dans la console (invisible pour le client)
+                console.error("❌ Erreur silencieuse lors de l'envoi:", error);
+                
+                // On affiche quand même les résultats pour ne pas bloquer le visiteur
+                form.style.display = 'none';
+                resultsDiv.classList.add('show');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         });
     </script>
 </body>
