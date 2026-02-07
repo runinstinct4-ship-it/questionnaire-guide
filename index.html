@@ -11,7 +11,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         :root {
             --fire: #ff4500;
             --air: #87ceeb;
@@ -24,7 +23,6 @@
             --text-muted: #a8a8b8;
             --accent: #c9a962;
         }
-
         body {
             font-family: 'Cormorant Garamond', serif;
             background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0f0f1a 100%);
@@ -34,7 +32,6 @@
             position: relative;
             overflow-x: hidden;
         }
-
         body::before {
             content: '';
             position: fixed;
@@ -49,7 +46,6 @@
             pointer-events: none;
             z-index: 0;
         }
-
         .stars {
             position: fixed;
             top: 0;
@@ -59,7 +55,6 @@
             pointer-events: none;
             z-index: 0;
         }
-
         .star {
             position: absolute;
             width: 2px;
@@ -68,25 +63,21 @@
             border-radius: 50%;
             animation: twinkle 3s infinite;
         }
-
         @keyframes twinkle {
             0%, 100% { opacity: 0.3; }
             50% { opacity: 1; }
         }
-
         .container {
             max-width: 900px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
         }
-
         header {
             text-align: center;
             margin-bottom: 60px;
             animation: fadeInDown 1s ease-out;
         }
-
         .elements-row {
             display: flex;
             justify-content: center;
@@ -95,12 +86,10 @@
             margin-bottom: 20px;
             animation: floatElements 3s ease-in-out infinite;
         }
-
         @keyframes floatElements {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
-
         h1 {
             font-family: 'Cinzel', serif;
             font-size: 3em;
@@ -110,21 +99,18 @@
             text-shadow: 0 0 30px rgba(201, 169, 98, 0.5);
             letter-spacing: 3px;
         }
-
         .subtitle {
             font-size: 1.3em;
             color: var(--text-muted);
             font-style: italic;
             letter-spacing: 2px;
         }
-
         .divider {
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--accent), transparent);
             margin: 40px 0;
             opacity: 0.5;
         }
-
         .card {
             background: rgba(26, 26, 46, 0.8);
             backdrop-filter: blur(10px);
@@ -135,21 +121,17 @@
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
             animation: fadeInUp 0.8s ease-out;
         }
-
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         .form-group {
             margin-bottom: 25px;
         }
-
         label {
             display: block;
             font-family: 'Cinzel', serif;
@@ -158,7 +140,6 @@
             margin-bottom: 10px;
             letter-spacing: 1px;
         }
-
         input[type="text"],
         input[type="email"],
         input[type="date"] {
@@ -172,13 +153,11 @@
             font-size: 1.1em;
             transition: all 0.3s ease;
         }
-
         input:focus {
             outline: none;
             border-color: var(--accent);
             box-shadow: 0 0 20px rgba(201, 169, 98, 0.3);
         }
-
         .checkbox-group {
             display: flex;
             align-items: center;
@@ -186,14 +165,12 @@
             margin-top: 20px;
             cursor: pointer;
         }
-
         .checkbox-group input {
             width: 20px;
             height: 20px;
             cursor: pointer;
             accent-color: var(--accent);
         }
-
         .question {
             margin-bottom: 35px;
             padding: 25px;
@@ -202,33 +179,28 @@
             border-radius: 8px;
             transition: all 0.3s ease;
         }
-
         .question:hover {
             background: rgba(10, 10, 15, 0.6);
             transform: translateX(5px);
         }
-
         .question-text {
             font-size: 1.2em;
             margin-bottom: 15px;
             color: var(--text-light);
             font-weight: 500;
         }
-
         .question-number {
             color: var(--accent);
             font-family: 'Cinzel', serif;
             font-weight: 600;
             margin-right: 10px;
         }
-
         .options {
             display: flex;
             flex-direction: column;
             gap: 12px;
             margin-left: 20px;
         }
-
         .option {
             display: flex;
             align-items: center;
@@ -237,11 +209,9 @@
             border-radius: 6px;
             transition: all 0.3s ease;
         }
-
         .option:hover {
             background: rgba(201, 169, 98, 0.1);
         }
-
         .option input[type="radio"] {
             appearance: none;
             width: 20px;
@@ -251,16 +221,13 @@
             margin-right: 15px;
             position: relative;
         }
-
         .option input[type="radio"]:checked {
             background: var(--accent);
         }
-
         .option-text {
             font-size: 1.1em;
             color: var(--text-light);
         }
-
         .submit-btn {
             width: 100%;
             padding: 20px;
@@ -278,21 +245,17 @@
             box-shadow: 0 5px 25px rgba(201, 169, 98, 0.4);
             margin-bottom: 50px;
         }
-
         .submit-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 35px rgba(201, 169, 98, 0.6);
         }
-
         .results {
             display: none;
         }
-
         .results.show {
             display: block;
             animation: fadeInUp 0.8s ease-out;
         }
-
         .result-card {
             background: linear-gradient(135deg, rgba(26, 26, 46, 0.9) 0%, rgba(26, 26, 46, 0.7) 100%);
             border: 2px solid var(--accent);
@@ -302,38 +265,32 @@
             margin-bottom: 30px;
             box-shadow: 0 15px 50px rgba(201, 169, 98, 0.3);
         }
-
         .result-icon {
             font-size: 5em;
             margin-bottom: 20px;
             animation: pulse 2s infinite;
         }
-
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
         }
-
         .result-title {
             font-family: 'Cinzel', serif;
             font-size: 2.5em;
             color: var(--accent);
             margin-bottom: 15px;
         }
-
         .result-subtitle {
             font-size: 1.5em;
             color: var(--text-muted);
             margin-bottom: 25px;
             font-style: italic;
         }
-
         .result-description {
             font-size: 1.2em;
             line-height: 1.8;
             margin-bottom: 15px;
         }
-
         .result-motto {
             font-size: 1.3em;
             color: var(--accent);
@@ -343,14 +300,12 @@
             background: rgba(201, 169, 98, 0.1);
             border-radius: 8px;
         }
-
         .scores {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 20px;
             margin-top: 30px;
         }
-
         .score-item {
             padding: 20px;
             background: rgba(10, 10, 15, 0.6);
@@ -358,11 +313,9 @@
             text-align: center;
             border: 1px solid rgba(201, 169, 98, 0.2);
         }
-
         .score-icon { font-size: 2em; margin-bottom: 10px; }
         .score-label { font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 5px; }
         .score-value { font-size: 1.5em; font-weight: 600; }
-
         .footer {
             text-align: center;
             margin-top: 60px;
@@ -371,7 +324,6 @@
             color: var(--text-muted);
             font-style: italic;
         }
-
         .school-name {
             font-family: 'Cinzel', serif;
             color: var(--accent);
@@ -379,7 +331,6 @@
             margin-top: 10px;
             letter-spacing: 2px;
         }
-
         .progress-bar {
             position: fixed;
             top: 0;
@@ -389,34 +340,20 @@
             transition: width 0.3s ease;
             z-index: 1000;
         }
-
-        .error-message {
-            color: #ff6b6b;
-            font-size: 0.95em;
-            margin-top: 5px;
-            display: none;
-        }
-
-        .error-message.show { display: block; animation: shake 0.5s; }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
-        }
-
         .success-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             z-index: 1999;
             display: none;
             backdrop-filter: blur(5px);
         }
-
+        .success-overlay.show {
+            display: block;
+        }
         .success-notification {
             position: fixed;
             top: 50%;
@@ -425,32 +362,74 @@
             background: linear-gradient(135deg, rgba(26, 26, 46, 0.98) 0%, rgba(10, 10, 15, 0.98) 100%);
             border: 3px solid var(--accent);
             border-radius: 20px;
-            padding: 40px;
+            padding: 50px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
             z-index: 2000;
             text-align: center;
             max-width: 90%;
-            width: 500px;
+            width: 600px;
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
-        .success-notification.show { transform: translate(-50%, -50%) scale(1); }
-
+        .success-notification.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .success-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+        .success-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2em;
+            color: var(--accent);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        .success-message {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+        .success-contact {
+            background: rgba(201, 169, 98, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 25px;
+            border-left: 4px solid var(--accent);
+            text-align: left;
+        }
+        .success-contact-title {
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
         .close-notification-btn {
             margin-top: 30px;
-            padding: 12px 30px;
-            background: var(--accent);
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--accent) 0%, #a68849 100%);
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             color: var(--bg-dark);
             font-family: 'Cinzel', serif;
-            font-weight: bold;
+            font-size: 1.1em;
+            font-weight: 600;
+            letter-spacing: 2px;
             cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
         }
-
+        .close-notification-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(201, 169, 98, 0.6);
+        }
         @media (max-width: 768px) {
             h1 { font-size: 2em; }
             .card { padding: 20px; }
+            .success-notification {
+                width: 95%;
+                padding: 30px;
+            }
         }
     </style>
 </head>
@@ -462,11 +441,11 @@
         <header>
             <div class="elements-row">🔥 💨 🌍 💧 ⚡</div>
             <h1>QUEL TYPE DE GUIDE ES-TU ?</h1>
-            <p class="subtitle">Questionnaire de Découverte - Guide des 4 Corps</p>
+            <p class="subtitle">Questionnaire de Découverte</p>
         </header>
-
+        
         <div class="divider"></div>
-
+        
         <form id="questionnaireForm">
             <!-- Informations personnelles -->
             <div class="card">
@@ -475,98 +454,121 @@
                 <div class="form-group">
                     <label for="prenom">Prénom *</label>
                     <input type="text" id="prenom" required>
-                    <div class="error-message" id="prenomError">Veuillez entrer votre prénom</div>
                 </div>
-
                 <div class="form-group">
                     <label for="nom">Nom *</label>
                     <input type="text" id="nom" required>
-                    <div class="error-message" id="nomError">Veuillez entrer votre nom</div>
                 </div>
-
                 <div class="form-group">
                     <label for="email">Email *</label>
                     <input type="email" id="email" required>
-                    <div class="error-message" id="emailError">Veuillez entrer une adresse email valide</div>
                 </div>
-
                 <div class="form-group">
                     <label for="dateNaissance">Date de naissance *</label>
                     <input type="date" id="dateNaissance" required>
-                    <div class="error-message" id="dateNaissanceError">Veuillez entrer votre date de naissance</div>
                 </div>
-
                 <div class="form-group">
                     <label for="lieuNaissance">Lieu de naissance *</label>
                     <input type="text" id="lieuNaissance" placeholder="Ville, Pays" required>
-                    <div class="error-message" id="lieuNaissanceError">Veuillez entrer votre lieu de naissance</div>
                 </div>
-
                 <label class="checkbox-group">
                     <input type="checkbox" id="inscriptionAtelier">
-                    <span>Je souhaite m'inscrire à l'atelier de découverte</span>
+                    <span>Je m'inscris à l'atelier "Quel type de guide êtes-vous ?"</span>
                 </label>
             </div>
-
+            
             <!-- Questions -->
             <div class="card">
                 <h2 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 25px; text-align: center;">QUESTIONNAIRE</h2>
-                <p style="text-align: center; color: var(--text-muted); margin-bottom: 30px; font-style: italic;">Écoute ton intuition pour chaque réponse.</p>
+                <p style="text-align: center; color: var(--text-muted); margin-bottom: 30px; font-style: italic;">Pour chaque question, choisis UNE SEULE réponse, celle qui te correspond le plus.</p>
                 
                 <div id="questionsContainer"></div>
             </div>
-
-            <button type="submit" class="submit-btn">Découvrir mon profil</button>
+            
+            <button type="submit" class="submit-btn">Découvrir mon type de guide</button>
         </form>
-
+        
         <div class="results" id="results">
             <div class="result-card" id="resultCard"></div>
             
             <div class="card">
-                <h3 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 20px; text-align: center;">TES SCORES PAR ÉLÉMENT</h3>
+                <h3 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 20px; text-align: center; font-size: 1.8em;">TES SCORES PAR ÉLÉMENT</h3>
                 <div class="scores" id="scoresContainer"></div>
             </div>
-
+            
             <div class="card" style="text-align: center;">
-                <h3 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 20px;">L'APPROCHE DES 4 CORPS</h3>
-                <p style="margin-bottom: 20px;">
-                    Ton élément dominant influence tes 4 corps : <br>
-                    <strong>Émotionnel, Physique, Mental et Spirituel.</strong>
+                <h3 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 20px; font-size: 1.8em;">ET MAINTENANT ?</h3>
+                <p style="font-size: 1.2em; line-height: 1.8; margin-bottom: 20px;">
+                    Tu connais maintenant ton type de Guide. C'est le premier pas.
                 </p>
-                <div style="background: rgba(201, 169, 98, 0.1); padding: 30px; border-radius: 10px;">
+                <div style="background: rgba(201, 169, 98, 0.1); padding: 30px; border-radius: 10px; margin-top: 20px;">
                     <p style="font-size: 1.3em; font-style: italic; color: var(--accent);">
                         "Je te montre aujourd'hui,<br>
                         demain tu fais ton propre chemin."
                     </p>
-                    <p style="margin-top: 15px; color: var(--text-muted);">--- Yann, Guide des 4 Corps</p>
+                    <p style="margin-top: 15px; color: var(--text-muted);">
+                        --- Yann, Guide des 4 Corps
+                    </p>
                 </div>
             </div>
         </div>
-
+        
         <footer class="footer">
             <p class="school-name">HAUTE ÉCOLE DES GUIDES</p>
         </footer>
     </div>
 
-    <!-- Notification -->
+    <!-- Notification de succès -->
     <div class="success-overlay" id="successOverlay"></div>
     <div class="success-notification" id="successNotification">
-        <div style="font-size: 4em; margin-bottom: 10px;">✨</div>
-        <h2 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 15px;">PROFIL ANALYSÉ</h2>
-        <p id="notifMessage">Tes résultats ont été enregistrés et envoyés par email.</p>
-        <button class="close-notification-btn" onclick="closeNotif()">Fermer</button>
+        <div class="success-icon">✅</div>
+        <h2 class="success-title">MESSAGE ENVOYÉ !</h2>
+        <p class="success-message">
+            Tes résultats ont été envoyés avec succès à ton adresse email.
+        </p>
+        <p class="success-message">
+            Tu devrais les recevoir dans quelques instants.
+        </p>
+        <div class="success-contact">
+            <div class="success-contact-title">📧 Prochaines étapes</div>
+            <p style="margin: 10px 0; color: var(--text-light);">
+                Nous te recontacterons par email pour t'informer du <strong style="color: var(--accent);">lieu</strong> et des <strong style="color: var(--accent);">modalités</strong> de l'atelier.
+            </p>
+            <p style="margin: 10px 0; color: var(--text-muted); font-size: 0.95em;">
+                Vérifie aussi tes <strong>spams</strong> si tu ne vois pas notre email !
+            </p>
+        </div>
+        <button class="close-notification-btn" onclick="closeSuccessNotification()">Fermer</button>
     </div>
 
     <!-- EmailJS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
+    
     <script>
-        // Init EmailJS
+        // Initialiser EmailJS
         (function() {
             emailjs.init("eREIP-jp7i5D028kD");
         })();
 
-        // Etoiles
+        // Fonctions pour la notification
+        function showSuccessNotification() {
+            document.getElementById('successOverlay').classList.add('show');
+            setTimeout(() => {
+                document.getElementById('successNotification').classList.add('show');
+            }, 100);
+        }
+
+        function closeSuccessNotification() {
+            document.getElementById('successNotification').classList.remove('show');
+            setTimeout(() => {
+                document.getElementById('successOverlay').classList.remove('show');
+            }, 300);
+        }
+
+        // Fermer en cliquant sur l'overlay
+        document.getElementById('successOverlay').addEventListener('click', closeSuccessNotification);
+
+        // Création des étoiles
         const starsContainer = document.getElementById('stars');
         for (let i = 0; i < 60; i++) {
             const star = document.createElement('div');
@@ -577,6 +579,7 @@
             starsContainer.appendChild(star);
         }
 
+        // Questions du questionnaire
         const questions = [
             { number: 1, text: "Quand tu as un problème, tu préfères :", options: [
                 { value: "A", text: "Agir immédiatement, foncer" },
@@ -755,25 +758,29 @@
             ]}
         ];
 
+        // Profils des guides
         const guideProfiles = {
-            A: { icon: "🔥", title: "GUIDE FEU", subtitle: "L'Éveilleur & Coupeur de Feu", strengths: "Action, courage, transformation", challenge: "Canaliser ta puissance", motto: "Je transforme, j'éveille, j'illumine" },
-            B: { icon: "💨", title: "GUIDE AIR", subtitle: "Le Messager Multidimensionnel", strengths: "Signes, voyage astral, invisible", challenge: "Revenir sur terre, s'ancrer", motto: "Je traverse les voiles, je relie les mondes" },
-            C: { icon: "🌍", title: "GUIDE TERRE", subtitle: "Le Guérisseur Ancré", strengths: "Stabilité, magnétisme, ancêtres", challenge: "T'ouvrir au subtil", motto: "Je stabilise, je guéris, je matérialise" },
-            D: { icon: "💧", title: "GUIDE EAU", subtitle: "Le Sensitif Émotionnel", strengths: "Empathie, purification, lune", challenge: "Ne pas absorber le négatif", motto: "Je ressens, je purifie, je fluidifie" },
-            E: { icon: "⚡", title: "GUIDE FOUDRE", subtitle: "Le Transmetteur Direct", strengths: "Rapidité, flashs, intuition brute", challenge: "Ne pas court-circuiter", motto: "Je canalise, je transmets, j'électrise" }
+            A: { icon: "🔥", title: "GUIDE FEU", subtitle: "L'Éveilleur & Coupeur de Feu", strengths: "Action, courage, transformation, chaleur dans les mains", challenge: "Canaliser ta puissance sans te brûler", motto: "Je transforme, j'éveille, j'illumine" },
+            B: { icon: "💨", title: "GUIDE AIR", subtitle: "Le Messager Multidimensionnel", strengths: "Signes, voyage astral, communication avec l'invisible", challenge: "Revenir sur terre, t'ancrer", motto: "Je traverse les voiles, je relie les mondes" },
+            C: { icon: "🌍", title: "GUIDE TERRE", subtitle: "Le Guérisseur Ancré", strengths: "Stabilité, magnétisme des mains, connexion aux ancêtres", challenge: "T'ouvrir au subtil, lâcher le mental", motto: "Je stabilise, je guéris, je matérialise" },
+            D: { icon: "💧", title: "GUIDE EAU", subtitle: "Le Sensitif Émotionnel", strengths: "Empathie, purification, connexion lunaire", challenge: "Ne pas absorber les émotions des autres", motto: "Je ressens, je purifie, je fluidifie" },
+            E: { icon: "⚡", title: "GUIDE FOUDRE", subtitle: "Le Transmetteur Direct", strengths: "Rapidité, pendule, écriture automatique, intuition flash", challenge: "Gérer ton énergie, ne pas court-circuiter", motto: "Je canalise, je transmets, j'électrise" }
         };
 
+        // Génération des questions
         const container = document.getElementById('questionsContainer');
         questions.forEach(q => {
             const div = document.createElement('div');
             div.className = 'question';
             div.innerHTML = `
-                <div class="question-text"><span class="question-number">${q.number}.</span>${q.text}</div>
+                <div class="question-text">
+                    <span class="question-number">${q.number}.</span>${q.text}
+                </div>
                 <div class="options">
                     ${q.options.map(opt => `
                         <label class="option">
                             <input type="radio" name="q${q.number}" value="${opt.value}" required>
-                            <span class="option-text">${opt.text}</span>
+                            <span class="option-text">${opt.value}) ${opt.text}</span>
                         </label>
                     `).join('')}
                 </div>
@@ -781,77 +788,141 @@
             container.appendChild(div);
         });
 
+        // Gestion du formulaire
         const form = document.getElementById('questionnaireForm');
+        const resultsDiv = document.getElementById('results');
+        const progressBar = document.getElementById('progressBar');
+
+        // Mise à jour de la barre de progression
         form.addEventListener('change', () => {
-            const answered = document.querySelectorAll('input[type="radio"]:checked').length;
-            document.getElementById('progressBar').style.width = (answered / 25 * 100) + '%';
+            const answeredQuestions = document.querySelectorAll('input[type="radio"]:checked').length;
+            const progress = (answeredQuestions / 25) * 100;
+            progressBar.style.width = progress + '%';
         });
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
+            // Récupération des informations personnelles
+            const prenom = document.getElementById('prenom').value.trim();
+            const nom = document.getElementById('nom').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const dateNaissance = document.getElementById('dateNaissance').value;
+            const lieuNaissance = document.getElementById('lieuNaissance').value.trim();
+            const inscriptionAtelier = document.getElementById('inscriptionAtelier').checked;
+
+            // Calcul des scores
             const scores = { A: 0, B: 0, C: 0, D: 0, E: 0 };
-            questions.forEach(q => {
-                const val = form.querySelector(`input[name="q${q.number}"]:checked`).value;
-                scores[val]++;
-            });
+            
+            for (let i = 1; i <= 25; i++) {
+                const answer = document.querySelector(`input[name="q${i}"]:checked`);
+                if (answer) {
+                    scores[answer.value]++;
+                }
+            }
 
+            // Trouver le type dominant
             const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
-            const dominant = sorted[0][0];
-            const secondary = sorted[1][0];
-            const profile = guideProfiles[dominant];
-            const isAtelier = document.getElementById('inscriptionAtelier').checked;
+            const dominantType = sorted[0][0];
+            const secondaryType = sorted[1][0];
+            const secondaryScore = sorted[1][1];
+            
+            const profile = guideProfiles[dominantType];
 
-            // Display Results
+            // Affichage des résultats
             const resultCard = document.getElementById('resultCard');
             resultCard.innerHTML = `
                 <div class="result-icon">${profile.icon}</div>
                 <h2 class="result-title">${profile.title}</h2>
                 <h3 class="result-subtitle">${profile.subtitle}</h3>
                 <div class="result-description">
-                    <p><strong>Forces :</strong> ${profile.strengths}</p>
-                    <p><strong>Défi :</strong> ${profile.challenge}</p>
+                    <p><strong style="color: var(--accent);">Tes forces :</strong> ${profile.strengths}</p>
+                    <p><strong style="color: var(--accent);">Ton défi :</strong> ${profile.challenge}</p>
                 </div>
                 <div class="result-motto">"${profile.motto}"</div>
-                ${isAtelier ? `<div style="margin-top:20px; color:var(--accent)">✓ Inscription atelier validée</div>` : ''}
+                ${inscriptionAtelier ? `
+                    <div style="margin-top: 25px; padding: 20px; background: rgba(201, 169, 98, 0.15); border: 2px solid var(--accent); border-radius: 10px;">
+                        <p style="font-size: 1.2em; color: var(--accent); margin: 0;">
+                            ✓ Tu es inscrit(e) à l'atelier "Quel type de guide êtes-vous ?"
+                        </p>
+                    </div>
+                ` : ''}
             `;
 
+            // Affichage des scores
             const scoresContainer = document.getElementById('scoresContainer');
-            scoresContainer.innerHTML = Object.entries(scores).map(([k, v]) => `
-                <div class="score-item">
-                    <div class="score-icon">${guideProfiles[k].icon}</div>
-                    <div class="score-label">${guideProfiles[k].title}</div>
-                    <div class="score-value">${v}/25</div>
-                </div>
-            `).join('');
+            scoresContainer.innerHTML = '';
+            
+            const elementIcons = { A: '🔥', B: '💨', C: '🌍', D: '💧', E: '⚡' };
+            const elementNames = { A: 'FEU', B: 'AIR', C: 'TERRE', D: 'EAU', E: 'FOUDRE' };
 
-            form.style.display = 'none';
-            document.getElementById('results').classList.add('show');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            Object.entries(scores).forEach(([type, score]) => {
+                const scoreItem = document.createElement('div');
+                scoreItem.className = 'score-item';
+                scoreItem.innerHTML = `
+                    <div class="score-icon">${elementIcons[type]}</div>
+                    <div class="score-label">${elementNames[type]}</div>
+                    <div class="score-value">${score}/25</div>
+                `;
+                scoresContainer.appendChild(scoreItem);
+            });
 
-            // Notification
-            document.getElementById('successOverlay').style.display = 'block';
-            document.getElementById('successNotification').classList.add('show');
-
-            // Email Data
+            // Préparation des données pour l'email
             const emailData = {
                 to_email: "runinstinct4@gmail.com",
-                user_email: document.getElementById('email').value,
-                user_name: document.getElementById('prenom').value + " " + document.getElementById('nom').value,
+                user_email: email,
+                user_prenom: prenom,
+                user_nom: nom,
+                date_naissance: dateNaissance,
+                lieu_naissance: lieuNaissance,
+                inscription_atelier: inscriptionAtelier ? "Oui" : "Non",
+                
                 type_dominant: profile.title,
-                score_details: `Feu: ${scores.A}, Air: ${scores.B}, Terre: ${scores.C}, Eau: ${scores.D}, Foudre: ${scores.E}`,
-                inscription_atelier: isAtelier ? "OUI" : "NON"
+                type_icon: profile.icon,
+                type_subtitle: profile.subtitle,
+                forces: profile.strengths,
+                defi: profile.challenge,
+                devise: profile.motto,
+                
+                score_feu: scores.A,
+                score_air: scores.B,
+                score_terre: scores.C,
+                score_eau: scores.D,
+                score_foudre: scores.E,
+                
+                type_secondaire: guideProfiles[secondaryType].title,
+                score_secondaire: secondaryScore,
+                
+                date_questionnaire: new Date().toLocaleDateString('fr-FR', { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                }),
+                heure_questionnaire: new Date().toLocaleTimeString('fr-FR')
             };
 
-            emailjs.send("service_5vtkmvj", "template_ayjbx8r", emailData)
-                .then(() => console.log("Email envoyé"))
-                .catch(err => console.error("Erreur email", err));
-        });
+            // Envoi de l'email via EmailJS
+            try {
+                await emailjs.send("service_5vtkmvj", "template_ayjbx8r", emailData);
+                console.log("✅ Email envoyé avec succès!");
+            } catch (error) {
+                console.error("❌ Erreur lors de l'envoi de l'email:", error);
+            }
 
-        function closeNotif() {
-            document.getElementById('successOverlay').style.display = 'none';
-            document.getElementById('successNotification').classList.remove('show');
-        }
+            // Affichage des résultats
+            form.style.display = 'none';
+            resultsDiv.classList.add('show');
+            
+            // Afficher la notification
+            showSuccessNotification();
+            
+            // Scroll vers les résultats
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     </script>
 </body>
 </html>
