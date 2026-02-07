@@ -137,25 +137,13 @@
         }
 
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .form-group {
@@ -189,6 +177,21 @@
             outline: none;
             border-color: var(--accent);
             box-shadow: 0 0 20px rgba(201, 169, 98, 0.3);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .checkbox-group input {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--accent);
         }
 
         .question {
@@ -237,7 +240,6 @@
 
         .option:hover {
             background: rgba(201, 169, 98, 0.1);
-            transform: translateX(5px);
         }
 
         .option input[type="radio"] {
@@ -247,26 +249,11 @@
             border: 2px solid var(--accent);
             border-radius: 50%;
             margin-right: 15px;
-            cursor: pointer;
             position: relative;
-            transition: all 0.3s ease;
         }
 
         .option input[type="radio"]:checked {
             background: var(--accent);
-            box-shadow: 0 0 15px rgba(201, 169, 98, 0.6);
-        }
-
-        .option input[type="radio"]:checked::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 8px;
-            height: 8px;
-            background: var(--bg-dark);
-            border-radius: 50%;
         }
 
         .option-text {
@@ -289,15 +276,12 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             box-shadow: 0 5px 25px rgba(201, 169, 98, 0.4);
+            margin-bottom: 50px;
         }
 
         .submit-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 35px rgba(201, 169, 98, 0.6);
-        }
-
-        .submit-btn:active {
-            transform: translateY(-1px);
         }
 
         .results {
@@ -375,21 +359,9 @@
             border: 1px solid rgba(201, 169, 98, 0.2);
         }
 
-        .score-icon {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-
-        .score-label {
-            font-family: 'Cinzel', serif;
-            color: var(--accent);
-            margin-bottom: 5px;
-        }
-
-        .score-value {
-            font-size: 1.5em;
-            font-weight: 600;
-        }
+        .score-icon { font-size: 2em; margin-bottom: 10px; }
+        .score-label { font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 5px; }
+        .score-value { font-size: 1.5em; font-weight: 600; }
 
         .footer {
             text-align: center;
@@ -408,29 +380,11 @@
             letter-spacing: 2px;
         }
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2em;
-            }
-
-            .card {
-                padding: 25px;
-            }
-
-            .question-text {
-                font-size: 1.1em;
-            }
-
-            .options {
-                margin-left: 0;
-            }
-        }
-
         .progress-bar {
             position: fixed;
             top: 0;
             left: 0;
-            height: 3px;
+            height: 4px;
             background: linear-gradient(90deg, var(--fire), var(--air), var(--earth), var(--water), var(--thunder));
             transition: width 0.3s ease;
             z-index: 1000;
@@ -443,15 +397,24 @@
             display: none;
         }
 
-        .error-message.show {
-            display: block;
-            animation: shake 0.5s;
-        }
+        .error-message.show { display: block; animation: shake 0.5s; }
 
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             25% { transform: translateX(-10px); }
             75% { transform: translateX(10px); }
+        }
+
+        .success-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1999;
+            display: none;
+            backdrop-filter: blur(5px);
         }
 
         .success-notification {
@@ -462,107 +425,44 @@
             background: linear-gradient(135deg, rgba(26, 26, 46, 0.98) 0%, rgba(10, 10, 15, 0.98) 100%);
             border: 3px solid var(--accent);
             border-radius: 20px;
-            padding: 50px;
+            padding: 40px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
             z-index: 2000;
             text-align: center;
-            max-width: 600px;
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            max-width: 90%;
+            width: 500px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .success-notification.show {
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .success-icon {
-            font-size: 5em;
-            margin-bottom: 20px;
-            animation: successPulse 1.5s infinite;
-        }
-
-        @keyframes successPulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.2); opacity: 0.8; }
-        }
-
-        .success-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2em;
-            color: var(--accent);
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-
-        .success-message {
-            font-size: 1.2em;
-            color: var(--text-light);
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-
-        .success-contact {
-            background: rgba(201, 169, 98, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 25px;
-            border-left: 4px solid var(--accent);
-        }
-
-        .success-contact-title {
-            color: var(--accent);
-            font-weight: bold;
-            margin-bottom: 10px;
-            font-size: 1.1em;
-        }
-
-        .success-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0);
-            z-index: 1999;
-            display: none;
-            transition: background 0.3s ease;
-        }
-
-        .success-overlay.show {
-            display: block;
-            background: rgba(0, 0, 0, 0.8);
-        }
+        .success-notification.show { transform: translate(-50%, -50%) scale(1); }
 
         .close-notification-btn {
             margin-top: 30px;
-            padding: 15px 40px;
-            background: linear-gradient(135deg, var(--accent) 0%, #a68849 100%);
+            padding: 12px 30px;
+            background: var(--accent);
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             color: var(--bg-dark);
             font-family: 'Cinzel', serif;
-            font-size: 1.1em;
-            font-weight: 600;
-            letter-spacing: 2px;
+            font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
         }
 
-        .close-notification-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(201, 169, 98, 0.6);
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .card { padding: 20px; }
         }
     </style>
 </head>
 <body>
     <div class="stars" id="stars"></div>
-    <div class="progress-bar" id="progressBar"></div>
+    <div class="progress-bar" id="progressBar" style="width: 0%"></div>
     
     <div class="container">
         <header>
             <div class="elements-row">🔥 💨 🌍 💧 ⚡</div>
             <h1>QUEL TYPE DE GUIDE ES-TU ?</h1>
-            <p class="subtitle">Questionnaire de Découverte</p>
+            <p class="subtitle">Questionnaire de Découverte - Guide des 4 Corps</p>
         </header>
 
         <div class="divider"></div>
@@ -570,137 +470,105 @@
         <form id="questionnaireForm">
             <!-- Informations personnelles -->
             <div class="card">
-                <h2 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 25px; text-align: center; letter-spacing: 2px;">INFORMATIONS PERSONNELLES</h2>
+                <h2 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 25px; text-align: center;">INFORMATIONS PERSONNELLES</h2>
                 
                 <div class="form-group">
                     <label for="prenom">Prénom *</label>
-                    <input type="text" id="prenom" name="prenom" required>
+                    <input type="text" id="prenom" required>
                     <div class="error-message" id="prenomError">Veuillez entrer votre prénom</div>
                 </div>
 
                 <div class="form-group">
                     <label for="nom">Nom *</label>
-                    <input type="text" id="nom" name="nom" required>
+                    <input type="text" id="nom" required>
                     <div class="error-message" id="nomError">Veuillez entrer votre nom</div>
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" required>
                     <div class="error-message" id="emailError">Veuillez entrer une adresse email valide</div>
                 </div>
 
                 <div class="form-group">
                     <label for="dateNaissance">Date de naissance *</label>
-                    <input type="date" id="dateNaissance" name="dateNaissance" required>
+                    <input type="date" id="dateNaissance" required>
                     <div class="error-message" id="dateNaissanceError">Veuillez entrer votre date de naissance</div>
                 </div>
 
                 <div class="form-group">
                     <label for="lieuNaissance">Lieu de naissance *</label>
-                    <input type="text" id="lieuNaissance" name="lieuNaissance" placeholder="Ville, Pays" required>
+                    <input type="text" id="lieuNaissance" placeholder="Ville, Pays" required>
                     <div class="error-message" id="lieuNaissanceError">Veuillez entrer votre lieu de naissance</div>
                 </div>
+
+                <label class="checkbox-group">
+                    <input type="checkbox" id="inscriptionAtelier">
+                    <span>Je souhaite m'inscrire à l'atelier de découverte</span>
+                </label>
             </div>
 
             <!-- Questions -->
             <div class="card">
-                <h2 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 25px; text-align: center; letter-spacing: 2px;">QUESTIONNAIRE</h2>
-                <p style="text-align: center; color: var(--text-muted); margin-bottom: 30px; font-style: italic;">Pour chaque question, choisis UNE SEULE réponse, celle qui te correspond le plus.</p>
+                <h2 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 25px; text-align: center;">QUESTIONNAIRE</h2>
+                <p style="text-align: center; color: var(--text-muted); margin-bottom: 30px; font-style: italic;">Écoute ton intuition pour chaque réponse.</p>
                 
                 <div id="questionsContainer"></div>
             </div>
 
-            <button type="submit" class="submit-btn">Découvrir mon type de guide</button>
+            <button type="submit" class="submit-btn">Découvrir mon profil</button>
         </form>
 
         <div class="results" id="results">
             <div class="result-card" id="resultCard"></div>
             
             <div class="card">
-                <h3 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 20px; text-align: center; font-size: 1.8em;">TES SCORES PAR ÉLÉMENT</h3>
+                <h3 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 20px; text-align: center;">TES SCORES PAR ÉLÉMENT</h3>
                 <div class="scores" id="scoresContainer"></div>
             </div>
 
             <div class="card" style="text-align: center;">
-                <h3 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 20px; font-size: 1.8em;">ET MAINTENANT ?</h3>
-                <p style="font-size: 1.2em; line-height: 1.8; margin-bottom: 20px;">
-                    Tu connais maintenant ton type de Guide. C'est le premier pas.
+                <h3 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 20px;">L'APPROCHE DES 4 CORPS</h3>
+                <p style="margin-bottom: 20px;">
+                    Ton élément dominant influence tes 4 corps : <br>
+                    <strong>Émotionnel, Physique, Mental et Spirituel.</strong>
                 </p>
-                <p style="font-size: 1.1em; color: var(--text-muted); margin-bottom: 25px;">
-                    Pour développer tes capacités, la Haute École des Guides te propose<br>
-                    <strong style="color: var(--accent);">12 modules de 4 heures</strong>, adaptés à ton élément.
-                </p>
-                <div style="background: rgba(201, 169, 98, 0.1); padding: 30px; border-radius: 10px; margin-top: 20px;">
+                <div style="background: rgba(201, 169, 98, 0.1); padding: 30px; border-radius: 10px;">
                     <p style="font-size: 1.3em; font-style: italic; color: var(--accent);">
                         "Je te montre aujourd'hui,<br>
                         demain tu fais ton propre chemin."
                     </p>
-                    <p style="margin-top: 15px; color: var(--text-muted);">
-                        --- Yann, Guide des 4 Corps
-                    </p>
+                    <p style="margin-top: 15px; color: var(--text-muted);">--- Yann, Guide des 4 Corps</p>
                 </div>
             </div>
         </div>
 
-        <footer class="footer" id="mainFooter">
+        <footer class="footer">
             <p class="school-name">HAUTE ÉCOLE DES GUIDES</p>
         </footer>
     </div>
 
-    <!-- Notification de succès -->
+    <!-- Notification -->
     <div class="success-overlay" id="successOverlay"></div>
     <div class="success-notification" id="successNotification">
-        <div class="success-icon">✅</div>
-        <h2 class="success-title">MESSAGE ENVOYÉ !</h2>
-        <p class="success-message">
-            Tes résultats ont été envoyés avec succès à ton adresse email.
-        </p>
-        <p class="success-message">
-            Tu devrais les recevoir dans quelques instants.
-        </p>
-        <div class="success-contact">
-            <div class="success-contact-title">📧 Prochaines étapes</div>
-            <p style="margin: 10px 0; color: var(--text-light);">
-                Nous te recontacterons par email pour t'informer du <strong style="color: var(--accent);">lieu</strong> et des <strong style="color: var(--accent);">modalités</strong> de l'atelier.
-            </p>
-            <p style="margin: 10px 0; color: var(--text-muted); font-size: 0.95em;">
-                Vérifie aussi tes <strong>spams</strong> si tu ne vois pas notre email !
-            </p>
-        </div>
-        <button class="close-notification-btn" onclick="closeSuccessNotification()">Fermer</button>
+        <div style="font-size: 4em; margin-bottom: 10px;">✨</div>
+        <h2 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 15px;">PROFIL ANALYSÉ</h2>
+        <p id="notifMessage">Tes résultats ont été enregistrés et envoyés par email.</p>
+        <button class="close-notification-btn" onclick="closeNotif()">Fermer</button>
     </div>
 
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
     <script>
-        // Fonctions pour la notification de succès
-        function showSuccessNotification() {
-            const overlay = document.getElementById('successOverlay');
-            const notification = document.getElementById('successNotification');
-            
-            overlay.classList.add('show');
-            setTimeout(() => {
-                notification.classList.add('show');
-            }, 100);
-        }
+        // Init EmailJS
+        (function() {
+            emailjs.init("eREIP-jp7i5D028kD");
+        })();
 
-        function closeSuccessNotification() {
-            const overlay = document.getElementById('successOverlay');
-            const notification = document.getElementById('successNotification');
-            
-            notification.classList.remove('show');
-            setTimeout(() => {
-                overlay.classList.remove('show');
-            }, 300);
-        }
-
-        // Fermer en cliquant sur l'overlay
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('successOverlay').addEventListener('click', closeSuccessNotification);
-        });
-
-        // Création des étoiles
+        // Etoiles
         const starsContainer = document.getElementById('stars');
-        for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < 60; i++) {
             const star = document.createElement('div');
             star.className = 'star';
             star.style.left = Math.random() * 100 + '%';
@@ -709,617 +577,281 @@
             starsContainer.appendChild(star);
         }
 
-        // Questions du questionnaire
         const questions = [
-            {
-                number: 1,
-                text: "Quand tu as un problème, tu préfères :",
-                options: [
-                    { value: "A", text: "Agir immédiatement, foncer" },
-                    { value: "B", text: "Réfléchir, chercher des signes" },
-                    { value: "C", text: "Prendre du recul, rester calme" },
-                    { value: "D", text: "En parler, exprimer tes émotions" },
-                    { value: "E", text: "Trouver une solution rapide et efficace" }
-                ]
-            },
-            {
-                number: 2,
-                text: "Dans un groupe, on te voit comme :",
-                options: [
-                    { value: "A", text: "Le leader, celui qui motive" },
-                    { value: "B", text: "Le rêveur, celui qui a des idées" },
-                    { value: "C", text: "Le pilier, celui sur qui on compte" },
-                    { value: "D", text: "L'écoutant, celui qui comprend" },
-                    { value: "E", text: "L'électron libre, celui qui surprend" }
-                ]
-            },
-            {
-                number: 3,
-                text: "Ce qui te fatigue le plus :",
-                options: [
-                    { value: "A", text: "L'inaction, attendre sans rien faire" },
-                    { value: "B", text: "Le bruit, l'agitation permanente" },
-                    { value: "C", text: "Le changement brutal, l'instabilité" },
-                    { value: "D", text: "Les conflits, les ambiances tendues" },
-                    { value: "E", text: "La lenteur, les gens qui traînent" }
-                ]
-            },
-            {
-                number: 4,
-                text: "Ton rapport au corps :",
-                options: [
-                    { value: "A", text: "Tu as souvent chaud, beaucoup d'énergie" },
-                    { value: "B", text: "Tu te sens parfois \"ailleurs\", déconnecté" },
-                    { value: "C", text: "Tu es bien ancré, tu aimes le contact physique" },
-                    { value: "D", text: "Tu absorbes les émotions des autres" },
-                    { value: "E", text: "Tu as des sensations électriques, des fourmillements" }
-                ]
-            },
-            {
-                number: 5,
-                text: "En cas de danger, tu :",
-                options: [
-                    { value: "A", text: "Fais face, tu te bats" },
-                    { value: "B", text: "Analyses la situation, cherches une issue" },
-                    { value: "C", text: "Restes calme, ne paniques pas" },
-                    { value: "D", text: "Ressens le danger avant qu'il arrive" },
-                    { value: "E", text: "Réagis en un éclair, instinctivement" }
-                ]
-            },
-            {
-                number: 6,
-                text: "Ton rapport aux mains :",
-                options: [
-                    { value: "A", text: "Elles sont souvent chaudes, voire brûlantes" },
-                    { value: "B", text: "Tu gesticules beaucoup quand tu parles" },
-                    { value: "C", text: "Tu aimes toucher, manipuler des objets" },
-                    { value: "D", text: "Elles sont sensibles, parfois moites" },
-                    { value: "E", text: "Tu ressens des picotements, de l'électricité" }
-                ]
-            },
-            {
-                number: 7,
-                text: "Ton sommeil :",
-                options: [
-                    { value: "A", text: "Court mais intense, tu récupères vite" },
-                    { value: "B", text: "Plein de rêves, tu voyages la nuit" },
-                    { value: "C", text: "Profond et réparateur" },
-                    { value: "D", text: "Perturbé par les émotions de la journée" },
-                    { value: "E", text: "Variable, parfois insomnie électrique" }
-                ]
-            },
-            {
-                number: 8,
-                text: "Ce qui te recharge :",
-                options: [
-                    { value: "A", text: "Le sport, le mouvement, danser" },
-                    { value: "B", text: "La méditation, le silence, la nature" },
-                    { value: "C", text: "Le jardinage, marcher pieds nus" },
-                    { value: "D", text: "Un bain, être près de l'eau" },
-                    { value: "E", text: "Être seul pour te \"décharger\"" }
-                ]
-            },
-            {
-                number: 9,
-                text: "Avec les appareils électroniques :",
-                options: [
-                    { value: "A", text: "Ça va, rien de spécial" },
-                    { value: "B", text: "Tu reçois parfois des messages \"bizarres\"" },
-                    { value: "C", text: "Tu préfères le papier et le concret" },
-                    { value: "D", text: "Ils captent ton humeur parfois" },
-                    { value: "E", text: "Ils buguent souvent près de toi" }
-                ]
-            },
-            {
-                number: 10,
-                text: "Ton rapport aux animaux :",
-                options: [
-                    { value: "A", text: "Ils te respectent, parfois te craignent" },
-                    { value: "B", text: "Les oiseaux t'attirent particulièrement" },
-                    { value: "C", text: "Ils viennent vers toi naturellement" },
-                    { value: "D", text: "Tu ressens leurs émotions" },
-                    { value: "E", text: "Réactions variables, certains s'agitent" }
-                ]
-            },
-            {
-                number: 11,
-                text: "Quand quelqu'un te ment :",
-                options: [
-                    { value: "A", text: "Tu le confrontes directement" },
-                    { value: "B", text: "Tu le sais intuitivement, des signes te le disent" },
-                    { value: "C", text: "Tu le sens dans ton corps, dans tes tripes" },
-                    { value: "D", text: "Tu ressens son malaise émotionnel" },
-                    { value: "E", text: "Tu le sais instantanément, flash" }
-                ]
-            },
-            {
-                number: 12,
-                text: "Ton rapport au temps :",
-                options: [
-                    { value: "A", text: "Toujours pressé, impatient" },
-                    { value: "B", text: "Tu perds la notion du temps facilement" },
-                    { value: "C", text: "Ponctuel, régulier" },
-                    { value: "D", text: "Ça dépend de ton humeur" },
-                    { value: "E", text: "Tu veux que ça aille vite, efficacité" }
-                ]
-            },
-            {
-                number: 13,
-                text: "En colère, tu :",
-                options: [
-                    { value: "A", text: "Exploses, ça sort fort" },
-                    { value: "B", text: "Te renfermes, tu t'isoles" },
-                    { value: "C", text: "Restes stoïque, ça couve" },
-                    { value: "D", text: "Pleures ou cries, ça déborde" },
-                    { value: "E", text: "Réaction électrique puis ça passe" }
-                ]
-            },
-            {
-                number: 14,
-                text: "Ce qui t'attire naturellement :",
-                options: [
-                    { value: "A", text: "Les bougies, le feu, les rituels" },
-                    { value: "B", text: "Le ciel, les nuages, les hauteurs" },
-                    { value: "C", text: "Les pierres, les arbres, la forêt" },
-                    { value: "D", text: "L'eau, la mer, la lune" },
-                    { value: "E", text: "L'orage, l'électricité, les éclairs" }
-                ]
-            },
-            {
-                number: 15,
-                text: "Enfant, tu étais plutôt :",
-                options: [
-                    { value: "A", text: "Hyperactif, casse-cou" },
-                    { value: "B", text: "Rêveur, dans la lune" },
-                    { value: "C", text: "Calme, posé, observateur" },
-                    { value: "D", text: "Sensible, émotif, pleurait facilement" },
-                    { value: "E", text: "Imprévisible, surprenant" }
-                ]
-            },
-            {
-                number: 16,
-                text: "Tu préfères apprendre par :",
-                options: [
-                    { value: "A", text: "L'action, essayer tout de suite" },
-                    { value: "B", text: "La réflexion, comprendre le concept" },
-                    { value: "C", text: "La pratique répétée, le concret" },
-                    { value: "D", text: "Le ressenti, l'expérience émotionnelle" },
-                    { value: "E", text: "L'intuition, télécharger l'info" }
-                ]
-            },
-            {
-                number: 17,
-                text: "Ton don naturel serait plutôt :",
-                options: [
-                    { value: "A", text: "Couper le feu, soulager les brûlures" },
-                    { value: "B", text: "Recevoir des messages, voir des signes" },
-                    { value: "C", text: "Soigner avec les mains" },
-                    { value: "D", text: "Ressentir les émotions des autres" },
-                    { value: "E", text: "Faire marcher le pendule" }
-                ]
-            },
-            {
-                number: 18,
-                text: "Ton plus grand défi :",
-                options: [
-                    { value: "A", text: "Maîtriser ta colère, ta puissance" },
-                    { value: "B", text: "Revenir sur terre, t'ancrer" },
-                    { value: "C", text: "T'ouvrir au subtil, lâcher le contrôle" },
-                    { value: "D", text: "Ne pas absorber les émotions des autres" },
-                    { value: "E", text: "Gérer ton énergie, ne pas court-circuiter" }
-                ]
-            },
-            {
-                number: 19,
-                text: "Quand tu entres dans un lieu :",
-                options: [
-                    { value: "A", text: "Tu imposes ta présence naturellement" },
-                    { value: "B", text: "Tu captes l'ambiance, les \"vibrations\"" },
-                    { value: "C", text: "Tu scannes l'espace, les objets" },
-                    { value: "D", text: "Tu ressens les émotions qui ont été vécues là" },
-                    { value: "E", text: "Tu sais immédiatement si c'est bon ou pas" }
-                ]
-            },
-            {
-                number: 20,
-                text: "Ce que tu voudrais développer :",
-                options: [
-                    { value: "A", text: "Ta capacité à guérir, à soulager" },
-                    { value: "B", text: "Tes voyages astraux, ta clairvoyance" },
-                    { value: "C", text: "Ton magnétisme, ton ancrage" },
-                    { value: "D", text: "Ta protection émotionnelle" },
-                    { value: "E", text: "Ton contrôle de l'énergie" }
-                ]
-            },
-            {
-                number: 21,
-                text: "Les heures miroirs (11:11, 22:22...) :",
-                options: [
-                    { value: "A", text: "Bof, tu n'y fais pas attention" },
-                    { value: "B", text: "Tu les vois tout le temps !" },
-                    { value: "C", text: "Parfois, mais tu restes rationnel" },
-                    { value: "D", text: "Ça te touche émotionnellement" },
-                    { value: "E", text: "Tu les vois pile au bon moment" }
-                ]
-            },
-            {
-                number: 22,
-                text: "Tu te sens plus fort :",
-                options: [
-                    { value: "A", text: "Le jour, en plein soleil" },
-                    { value: "B", text: "À l'aube ou au crépuscule" },
-                    { value: "C", text: "N'importe quand, stable" },
-                    { value: "D", text: "La nuit, à la pleine lune" },
-                    { value: "E", text: "Pendant les orages" }
-                ]
-            },
-            {
-                number: 23,
-                text: "Tu préfères travailler :",
-                options: [
-                    { value: "A", text: "Seul, tu vas plus vite" },
-                    { value: "B", text: "Seul mais connecté aux autres" },
-                    { value: "C", text: "En équipe, dans la durée" },
-                    { value: "D", text: "En duo, relation proche" },
-                    { value: "E", text: "Peu importe, du moment que c'est efficace" }
-                ]
-            },
-            {
-                number: 24,
-                text: "Après avoir aidé quelqu'un, tu te sens :",
-                options: [
-                    { value: "A", text: "Rechargé, ça te booste" },
-                    { value: "B", text: "Léger, en paix" },
-                    { value: "C", text: "Satisfait, mission accomplie" },
-                    { value: "D", text: "Parfois vidé, tu as absorbé" },
-                    { value: "E", text: "Ça dépend, parfois électrisé parfois fatigué" }
-                ]
-            },
-            {
-                number: 25,
-                text: "Ce que les gens disent de toi :",
-                options: [
-                    { value: "A", text: "\"Tu dégages quelque chose de fort\"" },
-                    { value: "B", text: "\"Tu es spécial, différent\"" },
-                    { value: "C", text: "\"Tu es solide, on peut compter sur toi\"" },
-                    { value: "D", text: "\"Tu comprends tout, tu ressens tout\"" },
-                    { value: "E", text: "\"Tu es surprenant, imprévisible\"" }
-                ]
-            }
+            { number: 1, text: "Quand tu as un problème, tu préfères :", options: [
+                { value: "A", text: "Agir immédiatement, foncer" },
+                { value: "B", text: "Réfléchir, chercher des signes" },
+                { value: "C", text: "Prendre du recul, rester calme" },
+                { value: "D", text: "En parler, exprimer tes émotions" },
+                { value: "E", text: "Trouver une solution rapide et efficace" }
+            ]},
+            { number: 2, text: "Dans un groupe, on te voit comme :", options: [
+                { value: "A", text: "Le leader, celui qui motive" },
+                { value: "B", text: "Le rêveur, celui qui a des idées" },
+                { value: "C", text: "Le pilier, celui sur qui on compte" },
+                { value: "D", text: "L'écoutant, celui qui comprend" },
+                { value: "E", text: "L'électron libre, celui qui surprend" }
+            ]},
+            { number: 3, text: "Ce qui te fatigue le plus :", options: [
+                { value: "A", text: "L'inaction, attendre sans rien faire" },
+                { value: "B", text: "Le bruit, l'agitation permanente" },
+                { value: "C", text: "Le changement brutal, l'instabilité" },
+                { value: "D", text: "Les conflits, les ambiances tendues" },
+                { value: "E", text: "La lenteur, les gens qui traînent" }
+            ]},
+            { number: 4, text: "Ton rapport au corps :", options: [
+                { value: "A", text: "Tu as souvent chaud, beaucoup d'énergie" },
+                { value: "B", text: "Tu te sens parfois 'ailleurs', déconnecté" },
+                { value: "C", text: "Tu es bien ancré, tu aimes le contact physique" },
+                { value: "D", text: "Tu absorbes les émotions des autres" },
+                { value: "E", text: "Tu as des sensations électriques, des fourmillements" }
+            ]},
+            { number: 5, text: "En cas de danger, tu :", options: [
+                { value: "A", text: "Fais face, tu te bats" },
+                { value: "B", text: "Analyses la situation, cherches une issue" },
+                { value: "C", text: "Restes calme, ne paniques pas" },
+                { value: "D", text: "Ressens le danger avant qu'il arrive" },
+                { value: "E", text: "Réagis en un éclair, instinctivement" }
+            ]},
+            { number: 6, text: "Ton rapport aux mains :", options: [
+                { value: "A", text: "Elles sont souvent chaudes, voire brûlantes" },
+                { value: "B", text: "Tu gesticules beaucoup quand tu parles" },
+                { value: "C", text: "Tu aimes toucher, manipuler des objets" },
+                { value: "D", text: "Elles sont sensibles, parfois moites" },
+                { value: "E", text: "Tu ressens des picotements, de l'électricité" }
+            ]},
+            { number: 7, text: "Ton sommeil :", options: [
+                { value: "A", text: "Court mais intense, tu récupères vite" },
+                { value: "B", text: "Plein de rêves, tu voyages la nuit" },
+                { value: "C", text: "Profond et réparateur" },
+                { value: "D", text: "Perturbé par les émotions de la journée" },
+                { value: "E", text: "Variable, parfois insomnie électrique" }
+            ]},
+            { number: 8, text: "Ce qui te recharge :", options: [
+                { value: "A", text: "Le sport, le mouvement, danser" },
+                { value: "B", text: "La méditation, le silence, la nature" },
+                { value: "C", text: "Le jardinage, marcher pieds nus" },
+                { value: "D", text: "Un bain, être près de l'eau" },
+                { value: "E", text: "Être seul pour te 'décharger'" }
+            ]},
+            { number: 9, text: "Avec les appareils électroniques :", options: [
+                { value: "A", text: "Ça va, rien de spécial" },
+                { value: "B", text: "Tu reçois parfois des messages 'bizarres'" },
+                { value: "C", text: "Tu préfères le papier et le concret" },
+                { value: "D", text: "Ils captent ton humeur parfois" },
+                { value: "E", text: "Ils buguent souvent près de toi" }
+            ]},
+            { number: 10, text: "Ton rapport aux animaux :", options: [
+                { value: "A", text: "Ils te respectent, parfois te craignent" },
+                { value: "B", text: "Les oiseaux t'attirent particulièrement" },
+                { value: "C", text: "Ils viennent vers toi naturellement" },
+                { value: "D", text: "Tu ressens leurs émotions" },
+                { value: "E", text: "Réactions variables, certains s'agitent" }
+            ]},
+            { number: 11, text: "Quand quelqu'un te ment :", options: [
+                { value: "A", text: "Tu le confrontes directement" },
+                { value: "B", text: "Tu le sais intuitivement" },
+                { value: "C", text: "Tu le sens dans ton corps, tes tripes" },
+                { value: "D", text: "Tu ressens son malaise émotionnel" },
+                { value: "E", text: "Tu le sais instantanément, flash" }
+            ]},
+            { number: 12, text: "Ton rapport au temps :", options: [
+                { value: "A", text: "Toujours pressé, impatient" },
+                { value: "B", text: "Tu perds la notion du temps" },
+                { value: "C", text: "Ponctuel, régulier" },
+                { value: "D", text: "Ça dépend de ton humeur" },
+                { value: "E", text: "Tu veux de l'efficacité rapide" }
+            ]},
+            { number: 13, text: "En colère, tu :", options: [
+                { value: "A", text: "Exploses, ça sort fort" },
+                { value: "B", text: "Te renfermes, tu t'isoles" },
+                { value: "C", text: "Restes stoïque, ça couve" },
+                { value: "D", text: "Pleures ou cries, ça déborde" },
+                { value: "E", text: "Réaction électrique puis ça passe" }
+            ]},
+            { number: 14, text: "Ce qui t'attire naturellement :", options: [
+                { value: "A", text: "Les bougies, le feu, les rituels" },
+                { value: "B", text: "Le ciel, les nuages, les hauteurs" },
+                { value: "C", text: "Les pierres, les arbres, la forêt" },
+                { value: "D", text: "L'eau, la mer, la lune" },
+                { value: "E", text: "L'orage, l'électricité, les éclairs" }
+            ]},
+            { number: 15, text: "Enfant, tu étais plutôt :", options: [
+                { value: "A", text: "Hyperactif, casse-cou" },
+                { value: "B", text: "Rêveur, dans la lune" },
+                { value: "C", text: "Calme, posé, observateur" },
+                { value: "D", text: "Sensible, émotif" },
+                { value: "E", text: "Imprévisible, surprenant" }
+            ]},
+            { number: 16, text: "Tu préfères apprendre par :", options: [
+                { value: "A", text: "L'action, essayer tout de suite" },
+                { value: "B", text: "La réflexion, comprendre le concept" },
+                { value: "C", text: "La pratique répétée, le concret" },
+                { value: "D", text: "Le ressenti émotionnel" },
+                { value: "E", text: "L'intuition, téléchargement direct" }
+            ]},
+            { number: 17, text: "Ton don naturel serait plutôt :", options: [
+                { value: "A", text: "Couper le feu" },
+                { value: "B", text: "Recevoir des messages" },
+                { value: "C", text: "Magnétisme des mains" },
+                { value: "D", text: "Empathie profonde" },
+                { value: "E", text: "Pendule, intuition flash" }
+            ]},
+            { number: 18, text: "Ton plus grand défi :", options: [
+                { value: "A", text: "Maîtriser ta colère/puissance" },
+                { value: "B", text: "Revenir sur terre, s'ancrer" },
+                { value: "C", text: "T'ouvrir au subtil" },
+                { value: "D", text: "Ne pas absorber les émotions des autres" },
+                { value: "E", text: "Gérer ton flux d'énergie" }
+            ]},
+            { number: 19, text: "Quand tu entres dans un lieu :", options: [
+                { value: "A", text: "Tu imposes ta présence" },
+                { value: "B", text: "Tu captes les vibrations" },
+                { value: "C", text: "Tu scannes l'espace concret" },
+                { value: "D", text: "Tu ressens l'histoire émotionnelle" },
+                { value: "E", text: "Tu sais immédiatement si c'est 'ok'" }
+            ]},
+            { number: 20, text: "Ce que tu voudrais développer :", options: [
+                { value: "A", text: "Capacité à guérir/soulager" },
+                { value: "B", text: "Voyages astraux, clairvoyance" },
+                { value: "C", text: "Ancrage, magnétisme solide" },
+                { value: "D", text: "Protection émotionnelle" },
+                { value: "E", text: "Maîtrise de l'énergie rapide" }
+            ]},
+            { number: 21, text: "Les heures miroirs (11:11...) :", options: [
+                { value: "A", text: "Pas d'attention particulière" },
+                { value: "B", text: "Tu les vois tout le temps" },
+                { value: "C", text: "Rarement, tu es rationnel" },
+                { value: "D", text: "Ça te touche émotionnellement" },
+                { value: "E", text: "Tu les vois pile quand il faut" }
+            ]},
+            { number: 22, text: "Tu te sens plus fort :", options: [
+                { value: "A", text: "Le jour, plein soleil" },
+                { value: "B", text: "À l'aube ou au crépuscule" },
+                { value: "C", text: "N'importe quand, stable" },
+                { value: "D", text: "La nuit, pleine lune" },
+                { value: "E", text: "Pendant les orages" }
+            ]},
+            { number: 23, text: "Tu préfères travailler :", options: [
+                { value: "A", text: "Seul pour aller vite" },
+                { value: "B", text: "Seul mais connecté au subtil" },
+                { value: "C", text: "En équipe, dans la durée" },
+                { value: "D", text: "En duo, relation proche" },
+                { value: "E", text: "Peu importe si c'est efficace" }
+            ]},
+            { number: 24, text: "Après avoir aidé quelqu'un :", options: [
+                { value: "A", text: "Rechargé, boosté" },
+                { value: "B", text: "Léger, en paix" },
+                { value: "C", text: "Satisfait, mission accomplie" },
+                { value: "D", text: "Vidé, tu as tout pris" },
+                { value: "E", text: "Électrisé ou fatigué brutalement" }
+            ]},
+            { number: 25, text: "Ce que les gens disent de toi :", options: [
+                { value: "A", text: "'Tu dégages quelque chose de fort'" },
+                { value: "B", text: "'Tu es spécial, différent'" },
+                { value: "C", text: "'Tu es solide, fiable'" },
+                { value: "D", text: "'Tu comprends tout sans parler'" },
+                { value: "E", text: "'Tu es surprenant, imprévisible'" }
+            ]}
         ];
 
-        // Profils des guides
         const guideProfiles = {
-            A: {
-                icon: "🔥",
-                title: "GUIDE FEU",
-                subtitle: "L'Éveilleur & Coupeur de Feu",
-                strengths: "Action, courage, transformation, chaleur dans les mains",
-                challenge: "Canaliser ta puissance sans te brûler",
-                motto: "\"Je transforme, j'éveille, j'illumine\""
-            },
-            B: {
-                icon: "💨",
-                title: "GUIDE AIR",
-                subtitle: "Le Messager Multidimensionnel",
-                strengths: "Signes, voyage astral, communication avec l'invisible",
-                challenge: "Revenir sur terre, t'ancrer",
-                motto: "\"Je traverse les voiles, je relie les mondes\""
-            },
-            C: {
-                icon: "🌍",
-                title: "GUIDE TERRE",
-                subtitle: "Le Guérisseur Ancré",
-                strengths: "Stabilité, magnétisme des mains, connexion aux ancêtres",
-                challenge: "T'ouvrir au subtil, lâcher le mental",
-                motto: "\"Je stabilise, je guéris, je matérialise\""
-            },
-            D: {
-                icon: "💧",
-                title: "GUIDE EAU",
-                subtitle: "Le Sensitif Émotionnel",
-                strengths: "Empathie, purification, connexion lunaire",
-                challenge: "Ne pas absorber les émotions des autres",
-                motto: "\"Je ressens, je purifie, je fluidifie\""
-            },
-            E: {
-                icon: "⚡",
-                title: "GUIDE FOUDRE",
-                subtitle: "Le Transmetteur Direct",
-                strengths: "Rapidité, pendule, écriture automatique, intuition flash",
-                challenge: "Gérer ton énergie, ne pas court-circuiter",
-                motto: "\"Je canalise, je transmets, j'électrise\""
-            }
+            A: { icon: "🔥", title: "GUIDE FEU", subtitle: "L'Éveilleur & Coupeur de Feu", strengths: "Action, courage, transformation", challenge: "Canaliser ta puissance", motto: "Je transforme, j'éveille, j'illumine" },
+            B: { icon: "💨", title: "GUIDE AIR", subtitle: "Le Messager Multidimensionnel", strengths: "Signes, voyage astral, invisible", challenge: "Revenir sur terre, s'ancrer", motto: "Je traverse les voiles, je relie les mondes" },
+            C: { icon: "🌍", title: "GUIDE TERRE", subtitle: "Le Guérisseur Ancré", strengths: "Stabilité, magnétisme, ancêtres", challenge: "T'ouvrir au subtil", motto: "Je stabilise, je guéris, je matérialise" },
+            D: { icon: "💧", title: "GUIDE EAU", subtitle: "Le Sensitif Émotionnel", strengths: "Empathie, purification, lune", challenge: "Ne pas absorber le négatif", motto: "Je ressens, je purifie, je fluidifie" },
+            E: { icon: "⚡", title: "GUIDE FOUDRE", subtitle: "Le Transmetteur Direct", strengths: "Rapidité, flashs, intuition brute", challenge: "Ne pas court-circuiter", motto: "Je canalise, je transmets, j'électrise" }
         };
 
-        // Génération des questions
-        const questionsContainer = document.getElementById('questionsContainer');
-        questions.forEach((q, index) => {
-            const questionDiv = document.createElement('div');
-            questionDiv.className = 'question';
-            questionDiv.style.animationDelay = `${index * 0.05}s`;
-            
-            let optionsHTML = '';
-            q.options.forEach(option => {
-                optionsHTML += `
-                    <label class="option">
-                        <input type="radio" name="q${q.number}" value="${option.value}" required>
-                        <span class="option-text">${option.value}) ${option.text}</span>
-                    </label>
-                `;
-            });
-
-            questionDiv.innerHTML = `
-                <div class="question-text">
-                    <span class="question-number">${q.number}.</span>${q.text}
-                </div>
+        const container = document.getElementById('questionsContainer');
+        questions.forEach(q => {
+            const div = document.createElement('div');
+            div.className = 'question';
+            div.innerHTML = `
+                <div class="question-text"><span class="question-number">${q.number}.</span>${q.text}</div>
                 <div class="options">
-                    ${optionsHTML}
+                    ${q.options.map(opt => `
+                        <label class="option">
+                            <input type="radio" name="q${q.number}" value="${opt.value}" required>
+                            <span class="option-text">${opt.text}</span>
+                        </label>
+                    `).join('')}
                 </div>
             `;
-            
-            questionsContainer.appendChild(questionDiv);
+            container.appendChild(div);
         });
 
-        // Gestion du formulaire
         const form = document.getElementById('questionnaireForm');
-        const resultsDiv = document.getElementById('results');
-        const progressBar = document.getElementById('progressBar');
-
-        // Mise à jour de la barre de progression
         form.addEventListener('change', () => {
-            const totalQuestions = 25;
-            const answeredQuestions = document.querySelectorAll('input[type="radio"]:checked').length;
-            const progress = (answeredQuestions / totalQuestions) * 100;
-            progressBar.style.width = progress + '%';
+            const answered = document.querySelectorAll('input[type="radio"]:checked').length;
+            document.getElementById('progressBar').style.width = (answered / 25 * 100) + '%';
         });
 
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
-
-            // Validation des champs personnels
-            const prenom = document.getElementById('prenom').value.trim();
-            const nom = document.getElementById('nom').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const dateNaissance = document.getElementById('dateNaissance').value;
-            const lieuNaissance = document.getElementById('lieuNaissance').value.trim();
-
-            let hasError = false;
-
-            if (!prenom) {
-                document.getElementById('prenomError').classList.add('show');
-                hasError = true;
-            } else {
-                document.getElementById('prenomError').classList.remove('show');
-            }
-
-            if (!nom) {
-                document.getElementById('nomError').classList.add('show');
-                hasError = true;
-            } else {
-                document.getElementById('nomError').classList.remove('show');
-            }
-
-            if (!email || !email.includes('@')) {
-                document.getElementById('emailError').classList.add('show');
-                hasError = true;
-            } else {
-                document.getElementById('emailError').classList.remove('show');
-            }
-
-            if (!dateNaissance) {
-                document.getElementById('dateNaissanceError').classList.add('show');
-                hasError = true;
-            } else {
-                document.getElementById('dateNaissanceError').classList.remove('show');
-            }
-
-            if (!lieuNaissance) {
-                document.getElementById('lieuNaissanceError').classList.add('show');
-                hasError = true;
-            } else {
-                document.getElementById('lieuNaissanceError').classList.remove('show');
-            }
-
-            if (hasError) {
-                return;
-            }
-
-            // Calcul des scores
-            const scores = { A: 0, B: 0, C: 0, D: 0, E: 0 };
             
-            for (let i = 1; i <= 25; i++) {
-                const answer = document.querySelector(`input[name="q${i}"]:checked`);
-                if (answer) {
-                    scores[answer.value]++;
-                }
-            }
-
-            // Trouver le type dominant
-            let maxScore = 0;
-            let dominantType = '';
-            let secondaryType = '';
-            let secondaryScore = 0;
-
-            Object.entries(scores).forEach(([type, score]) => {
-                if (score > maxScore) {
-                    secondaryType = dominantType;
-                    secondaryScore = maxScore;
-                    maxScore = score;
-                    dominantType = type;
-                } else if (score > secondaryScore && score < maxScore) {
-                    secondaryType = type;
-                    secondaryScore = score;
-                }
+            const scores = { A: 0, B: 0, C: 0, D: 0, E: 0 };
+            questions.forEach(q => {
+                const val = form.querySelector(`input[name="q${q.number}"]:checked`).value;
+                scores[val]++;
             });
 
-            const profile = guideProfiles[dominantType];
+            const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+            const dominant = sorted[0][0];
+            const secondary = sorted[1][0];
+            const profile = guideProfiles[dominant];
+            const isAtelier = document.getElementById('inscriptionAtelier').checked;
 
-            // Affichage des résultats
+            // Display Results
             const resultCard = document.getElementById('resultCard');
             resultCard.innerHTML = `
                 <div class="result-icon">${profile.icon}</div>
                 <h2 class="result-title">${profile.title}</h2>
                 <h3 class="result-subtitle">${profile.subtitle}</h3>
                 <div class="result-description">
-                    <p><strong style="color: var(--accent);">Tes forces :</strong> ${profile.strengths}</p>
-                    <p><strong style="color: var(--accent);">Ton défi :</strong> ${profile.challenge}</p>
+                    <p><strong>Forces :</strong> ${profile.strengths}</p>
+                    <p><strong>Défi :</strong> ${profile.challenge}</p>
                 </div>
-                <div class="result-motto">${profile.motto}</div>
-                ${inscriptionAtelier ? `
-                    <div style="margin-top: 25px; padding: 20px; background: rgba(201, 169, 98, 0.15); border: 2px solid var(--accent); border-radius: 10px;">
-                        <p style="font-size: 1.2em; color: var(--accent); margin: 0;">
-                            ✓ Tu es inscrit(e) à l'atelier "Quel type de guide êtes-vous ?"
-                        </p>
-                    </div>
-                ` : ''}
+                <div class="result-motto">"${profile.motto}"</div>
+                ${isAtelier ? `<div style="margin-top:20px; color:var(--accent)">✓ Inscription atelier validée</div>` : ''}
             `;
 
-            // Affichage des scores
             const scoresContainer = document.getElementById('scoresContainer');
-            scoresContainer.innerHTML = '';
-            
-            const elementIcons = { A: '🔥', B: '💨', C: '🌍', D: '💧', E: '⚡' };
-            const elementNames = { A: 'FEU', B: 'AIR', C: 'TERRE', D: 'EAU', E: 'FOUDRE' };
+            scoresContainer.innerHTML = Object.entries(scores).map(([k, v]) => `
+                <div class="score-item">
+                    <div class="score-icon">${guideProfiles[k].icon}</div>
+                    <div class="score-label">${guideProfiles[k].title}</div>
+                    <div class="score-value">${v}/25</div>
+                </div>
+            `).join('');
 
-            Object.entries(scores).forEach(([type, score]) => {
-                const scoreItem = document.createElement('div');
-                scoreItem.className = 'score-item';
-                scoreItem.innerHTML = `
-                    <div class="score-icon">${elementIcons[type]}</div>
-                    <div class="score-label">${elementNames[type]}</div>
-                    <div class="score-value">${score}/25</div>
-                `;
-                scoresContainer.appendChild(scoreItem);
-            });
+            form.style.display = 'none';
+            document.getElementById('results').classList.add('show');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            // Préparation des données pour l'email
-            const inscriptionAtelier = document.getElementById('inscriptionAtelier').checked;
-            
+            // Notification
+            document.getElementById('successOverlay').style.display = 'block';
+            document.getElementById('successNotification').classList.add('show');
+
+            // Email Data
             const emailData = {
-                // Informations personnelles
-                prenom,
-                nom,
-                email,
-                dateNaissance,
-                lieuNaissance,
-                inscriptionAtelier: inscriptionAtelier ? 'Oui' : 'Non',
-                
-                // Résultats du questionnaire
-                typeDominant: profile.title,
-                typeDominantIcon: profile.icon,
-                typeDominantSubtitle: profile.subtitle,
-                forces: profile.strengths,
-                defi: profile.challenge,
-                devise: profile.motto,
-                
-                // Scores détaillés
-                scoreFeu: scores.A,
-                scoreAir: scores.B,
-                scoreTerre: scores.C,
-                scoreEau: scores.D,
-                scoreFoudre: scores.E,
-                scoreTotal: 25,
-                
-                // Type secondaire
-                typeSecondaire: secondaryType ? guideProfiles[secondaryType].title : 'Aucun',
-                scoreSecondaire: secondaryScore,
-                
-                // Métadonnées
-                dateQuestionnaire: new Date().toLocaleDateString('fr-FR', { 
-                    weekday: 'long', 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric' 
-                }),
-                heureQuestionnaire: new Date().toLocaleTimeString('fr-FR')
+                to_email: "runinstinct4@gmail.com",
+                user_email: document.getElementById('email').value,
+                user_name: document.getElementById('prenom').value + " " + document.getElementById('nom').value,
+                type_dominant: profile.title,
+                score_details: `Feu: ${scores.A}, Air: ${scores.B}, Terre: ${scores.C}, Eau: ${scores.D}, Foudre: ${scores.E}`,
+                inscription_atelier: isAtelier ? "OUI" : "NON"
             };
 
-            // Simulation d'envoi d'email (à remplacer par une vraie API)
-            console.log('Données à envoyer par email:', emailData);
-            
-            // Fonction d'envoi d'email via EmailJS
-            function sendEmail() {
-                // Configuration EmailJS - À REMPLACER PAR VOS VRAIES VALEURS
-                const EMAILJS_PUBLIC_KEY = "eREIP-jp7i5D028kD";
-                const EMAILJS_SERVICE_ID = "service_5vtkmvj";
-                const EMAILJS_TEMPLATE_ID = "template_ayjbx8r";
-
-                // Vérifier si EmailJS est chargé
-                if (typeof emailjs === 'undefined') {
-                    console.error('EmailJS n\'est pas chargé');
-                    showSuccessNotification(); // Afficher quand même la notification
-                    return;
-                }
-
-                // Initialiser EmailJS
-                emailjs.init(EMAILJS_PUBLIC_KEY);
-
-                // Préparer les données pour le template
-                const templateParams = {
-                    to_email: "runinstinct4@gmail.com",
-                    user_email: emailData.email,
-                    user_prenom: emailData.prenom,
-                    user_nom: emailData.nom,
-                    date_naissance: emailData.dateNaissance,
-                    lieu_naissance: emailData.lieuNaissance,
-                    inscription_atelier: emailData.inscriptionAtelier,
-                    
-                    type_dominant: emailData.typeDominant,
-                    type_icon: emailData.typeDominantIcon,
-                    type_subtitle: emailData.typeDominantSubtitle,
-                    forces: emailData.forces,
-                    defi: emailData.defi,
-                    devise: emailData.devise,
-                    
-                    score_feu: emailData.scoreFeu,
-                    score_air: emailData.scoreAir,
-                    score_terre: emailData.scoreTerre,
-                    score_eau: emailData.scoreEau,
-                    score_foudre: emailData.scoreFoudre,
-                    
-                    type_secondaire: emailData.typeSecondaire,
-                    score_secondaire: emailData.scoreSecondaire,
-                    
-                    date_questionnaire: emailData.dateQuestionnaire,
-                    heure_questionnaire: emailData.heureQuestionnaire
-                };
-
-                // Envoyer l'email
-                emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
-                    .then(function(response) {
-                        console.log('✅ Email envoyé avec succès!', response.status, response.text);
-                        showSuccessNotification();
-                    }, function(error) {
-                        console.error('❌ Erreur lors de l\'envoi:', error);
-                        showSuccessNotification(); // Afficher quand même pour ne pas bloquer l'utilisateur
-                    });
-            }
-
-            // Appeler l'envoi d'email
-            sendEmail();
-            
-            // Dans un environnement réel, vous utiliseriez une API comme:
-            // fetch('votre-api-endpoint.com/send-email', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(emailData)
-            // });
-
-            // Affichage des résultats
-            form.style.display = 'none';
-            resultsDiv.classList.add('show');
-            
-            // Scroll vers les résultats
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            emailjs.send("service_5vtkmvj", "template_ayjbx8r", emailData)
+                .then(() => console.log("Email envoyé"))
+                .catch(err => console.error("Erreur email", err));
         });
+
+        function closeNotif() {
+            document.getElementById('successOverlay').style.display = 'none';
+            document.getElementById('successNotification').classList.remove('show');
+        }
     </script>
-
-    <!-- EmailJS SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
 </body>
 </html>
