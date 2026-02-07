@@ -903,18 +903,13 @@
             };
 
             // Envoi de l'email via EmailJS
-            try {
-                await emailjs.send("service_5vtkmvj", "template_bl42agu", emailData);
-                console.log("✅ Email envoyé avec succès!");
-            } catch (error) {
-                console.error("❌ Erreur lors de l'envoi de l'email:", error);
-            }
-
-            // Affichage des résultats
+        try {
+            await emailjs.send("service_5vtkmvj", "template_bl42agu", emailData);
+            console.log("✅ Email envoyé avec succès!");
+            
+            // On affiche le succès SEULEMENT si l'email est bien parti
             form.style.display = 'none';
             resultsDiv.classList.add('show');
-            
-            // Afficher la notification
             showSuccessNotification();
             
             // Scroll vers les résultats
@@ -922,6 +917,12 @@
                 top: 0,
                 behavior: 'smooth'
             });
+
+        } catch (error) {
+            console.error("❌ Erreur lors de l'envoi:", error);
+            // Ceci affichera l'erreur exacte sur votre écran
+            alert("Une erreur empêche l'envoi : " + JSON.stringify(error));
+        }
         });
     </script>
 </body>
