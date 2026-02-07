@@ -291,13 +291,34 @@
             line-height: 1.8;
             margin-bottom: 15px;
         }
+        /* Nouvelle classe pour le teasing atelier */
+        .workshop-tease {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(201, 169, 98, 0.15) 0%, rgba(10, 10, 15, 0.6) 100%);
+            border: 1px solid var(--accent);
+            border-radius: 10px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        .workshop-tease::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent);
+        }
+        
         .result-motto {
             font-size: 1.3em;
             color: var(--accent);
             font-style: italic;
             margin-top: 20px;
             padding: 20px;
-            background: rgba(201, 169, 98, 0.1);
+            background: rgba(201, 169, 98, 0.05);
             border-radius: 8px;
         }
         .scores {
@@ -447,7 +468,6 @@
         <div class="divider"></div>
         
         <form id="questionnaireForm">
-            <!-- Informations personnelles -->
             <div class="card">
                 <h2 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 25px; text-align: center;">INFORMATIONS PERSONNELLES</h2>
                 
@@ -477,7 +497,6 @@
                 </label>
             </div>
             
-            <!-- Questions -->
             <div class="card">
                 <h2 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 25px; text-align: center;">QUESTIONNAIRE</h2>
                 <p style="text-align: center; color: var(--text-muted); margin-bottom: 30px; font-style: italic;">Pour chaque question, choisis UNE SEULE réponse, celle qui te correspond le plus.</p>
@@ -518,7 +537,6 @@
         </footer>
     </div>
 
-    <!-- Notification de succès -->
     <div class="success-overlay" id="successOverlay"></div>
     <div class="success-notification" id="successNotification">
         <div class="success-icon">✅</div>
@@ -541,7 +559,6 @@
         <button class="close-notification-btn" onclick="closeSuccessNotification()">Fermer</button>
     </div>
 
-    <!-- EmailJS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     
     <script>
@@ -758,13 +775,53 @@
             ]}
         ];
 
-        // Profils des guides
+        // Profils des guides AVEC le teasing marketing
         const guideProfiles = {
-            A: { icon: "🔥", title: "GUIDE FEU", subtitle: "L'Éveilleur & Coupeur de Feu", strengths: "Action, courage, transformation, chaleur dans les mains", challenge: "Canaliser ta puissance sans te brûler", motto: "Je transforme, j'éveille, j'illumine" },
-            B: { icon: "💨", title: "GUIDE AIR", subtitle: "Le Messager Multidimensionnel", strengths: "Signes, voyage astral, communication avec l'invisible", challenge: "Revenir sur terre, t'ancrer", motto: "Je traverse les voiles, je relie les mondes" },
-            C: { icon: "🌍", title: "GUIDE TERRE", subtitle: "Le Guérisseur Ancré", strengths: "Stabilité, magnétisme des mains, connexion aux ancêtres", challenge: "T'ouvrir au subtil, lâcher le mental", motto: "Je stabilise, je guéris, je matérialise" },
-            D: { icon: "💧", title: "GUIDE EAU", subtitle: "Le Sensitif Émotionnel", strengths: "Empathie, purification, connexion lunaire", challenge: "Ne pas absorber les émotions des autres", motto: "Je ressens, je purifie, je fluidifie" },
-            E: { icon: "⚡", title: "GUIDE FOUDRE", subtitle: "Le Transmetteur Direct", strengths: "Rapidité, pendule, écriture automatique, intuition flash", challenge: "Gérer ton énergie, ne pas court-circuiter", motto: "Je canalise, je transmets, j'électrise" }
+            A: { 
+                icon: "🔥", 
+                title: "GUIDE FEU", 
+                subtitle: "L'Éveilleur & Coupeur de Feu", 
+                strengths: "Action, courage, transformation, chaleur dans les mains", 
+                challenge: "Canaliser ta puissance sans te brûler", 
+                motto: "Je transforme, j'éveille, j'illumine",
+                workshopTease: "Ton feu est puissant mais peut te consumer. À l'atelier, tu apprendras la technique précise pour 'couper le feu' sans prendre le mal sur toi."
+            },
+            B: { 
+                icon: "💨", 
+                title: "GUIDE AIR", 
+                subtitle: "Le Messager Multidimensionnel", 
+                strengths: "Signes, voyage astral, communication avec l'invisible", 
+                challenge: "Revenir sur terre, t'ancrer", 
+                motto: "Je traverse les voiles, je relie les mondes",
+                workshopTease: "Tu captes beaucoup de messages, mais sais-tu les trier ? À l'atelier, nous pratiquerons l'ancrage immédiat pour ne plus 'flotter' après une connexion."
+            },
+            C: { 
+                icon: "🌍", 
+                title: "GUIDE TERRE", 
+                subtitle: "Le Guérisseur Ancré", 
+                strengths: "Stabilité, magnétisme des mains, connexion aux ancêtres", 
+                challenge: "T'ouvrir au subtil, lâcher le mental", 
+                motto: "Je stabilise, je guéris, je matérialise",
+                workshopTease: "Tu as des 'mains d'or' qui dorment. À l'atelier, tu toucheras la matière pour réveiller ce magnétisme concret et apprendre à scanner les corps."
+            },
+            D: { 
+                icon: "💧", 
+                title: "GUIDE EAU", 
+                subtitle: "Le Sensitif Émotionnel", 
+                strengths: "Empathie, purification, connexion lunaire", 
+                challenge: "Ne pas absorber les émotions des autres", 
+                motto: "Je ressens, je purifie, je fluidifie",
+                workshopTease: "Tu es une éponge émotionnelle. À l'atelier, je t'enseignerai le rituel de 'l'Imperméable' pour soigner les autres sans te rendre malade."
+            },
+            E: { 
+                icon: "⚡", 
+                title: "GUIDE FOUDRE", 
+                subtitle: "Le Transmetteur Direct", 
+                strengths: "Rapidité, pendule, écriture automatique, intuition flash", 
+                challenge: "Gérer ton énergie, ne pas court-circuiter", 
+                motto: "Je canalise, je transmets, j'électrise",
+                workshopTease: "Ton intuition est fulgurante mais instable. À l'atelier, tu apprendras à déclencher cette connexion sur commande, sans attendre que l'orage frappe."
+            }
         };
 
         // Génération des questions
@@ -829,24 +886,43 @@
             
             const profile = guideProfiles[dominantType];
 
-            // Affichage des résultats
+            // Affichage des résultats avec le TEASING ATELIER
             const resultCard = document.getElementById('resultCard');
             resultCard.innerHTML = `
                 <div class="result-icon">${profile.icon}</div>
                 <h2 class="result-title">${profile.title}</h2>
                 <h3 class="result-subtitle">${profile.subtitle}</h3>
+                
                 <div class="result-description">
-                    <p><strong style="color: var(--accent);">Tes forces :</strong> ${profile.strengths}</p>
-                    <p><strong style="color: var(--accent);">Ton défi :</strong> ${profile.challenge}</p>
+                    <p><strong style="color: var(--accent);">Tes forces innées :</strong><br> ${profile.strengths}</p>
+                    <p><strong style="color: var(--accent);">Ton défi actuel :</strong><br> ${profile.challenge}</p>
                 </div>
+
                 <div class="result-motto">"${profile.motto}"</div>
+
+                <div class="workshop-tease">
+                    <h4 style="color: var(--accent); font-family: 'Cinzel', serif; margin-bottom: 15px; font-size: 1.3em;">
+                        ⚠️ POURQUOI L'ATELIER EST VITAL POUR UN ${profile.title.toUpperCase()} ?
+                    </h4>
+                    <p style="font-size: 1.1em; line-height: 1.6; color: #fff;">
+                        ${profile.workshopTease}
+                    </p>
+                    <p style="margin-top: 15px; font-style: italic; color: var(--text-muted); font-size: 0.9em;">
+                        Le savoir théorique ne suffit pas. L'activation se fait en présence.
+                    </p>
+                </div>
+
                 ${inscriptionAtelier ? `
-                    <div style="margin-top: 25px; padding: 20px; background: rgba(201, 169, 98, 0.15); border: 2px solid var(--accent); border-radius: 10px;">
-                        <p style="font-size: 1.2em; color: var(--accent); margin: 0;">
-                            ✓ Tu es inscrit(e) à l'atelier "Quel type de guide êtes-vous ?"
+                    <div style="margin-top: 25px; padding: 15px; background: rgba(40, 167, 69, 0.2); border: 1px solid #28a745; border-radius: 8px;">
+                        <p style="font-size: 1.1em; color: #28a745; margin: 0; font-weight: bold;">
+                            ✓ Pré-inscription à l'atelier validée
                         </p>
                     </div>
-                ` : ''}
+                ` : `
+                    <div style="margin-top: 25px;">
+                        <p style="color: var(--text-muted);">Tu n'as pas coché la case atelier... C'est dommage, ton profil ${profile.title} demande de la pratique pour être maîtrisé.</p>
+                    </div>
+                `}
             `;
 
             // Affichage des scores
@@ -904,7 +980,7 @@
 
             // Envoi de l'email via EmailJS
             try {
-                // On envoie les données (Ton ID est le bon, on ne touche plus !)
+                // On envoie les données
                 await emailjs.send("service_5vtkmvj", "template_bl42agu", emailData);
                 
                 // Si l'envoi réussit, on affiche les résultats et la belle notif
@@ -919,7 +995,7 @@
                 });
 
             } catch (error) {
-                // En cas d'erreur, on le note juste dans la console (invisible pour le client)
+                // En cas d'erreur
                 console.error("❌ Erreur silencieuse lors de l'envoi:", error);
                 
                 // On affiche quand même les résultats pour ne pas bloquer le visiteur
