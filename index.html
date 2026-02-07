@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quel Type de Guide Es-Tu ? | Haute École des Guides</title>
+    <title>Quel est ton Élément Dominant ? | Haute École des Guides</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         * {
@@ -282,45 +282,64 @@
         }
         .result-subtitle {
             font-size: 1.5em;
-            color: var(--text-muted);
+            color: var(--fire); /* Changera selon le type */
             margin-bottom: 25px;
-            font-style: italic;
+            font-weight: bold;
+            text-transform: uppercase;
         }
         .result-description {
             font-size: 1.2em;
             line-height: 1.8;
             margin-bottom: 15px;
-        }
-        /* Nouvelle classe pour le teasing atelier */
-        .workshop-tease {
-            margin-top: 30px;
-            padding: 25px;
-            background: linear-gradient(135deg, rgba(201, 169, 98, 0.15) 0%, rgba(10, 10, 15, 0.6) 100%);
-            border: 1px solid var(--accent);
-            border-radius: 10px;
             text-align: left;
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        /* --- STYLES "CADENASSÉS" --- */
+        .locked-content {
+            margin-top: 30px;
+            padding: 30px;
+            background: rgba(10, 10, 15, 0.5);
+            border: 1px dashed var(--accent);
+            border-radius: 10px;
             position: relative;
             overflow: hidden;
         }
-        .workshop-tease::before {
-            content: '';
+        .blur-text {
+            filter: blur(6px);
+            user-select: none;
+            opacity: 0.6;
+            margin-bottom: 15px;
+        }
+        .lock-overlay {
             position: absolute;
             top: 0;
             left: 0;
-            width: 4px;
+            width: 100%;
             height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0,0,0,0.4);
+            z-index: 10;
+        }
+        .lock-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        .lock-msg {
+            font-family: 'Cinzel', serif;
+            color: #fff;
             background: var(--accent);
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
         
-        .result-motto {
-            font-size: 1.3em;
-            color: var(--accent);
-            font-style: italic;
-            margin-top: 20px;
-            padding: 20px;
-            background: rgba(201, 169, 98, 0.05);
-            border-radius: 8px;
-        }
         .scores {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -337,6 +356,7 @@
         .score-icon { font-size: 2em; margin-bottom: 10px; }
         .score-label { font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 5px; }
         .score-value { font-size: 1.5em; font-weight: 600; }
+        
         .footer {
             text-align: center;
             margin-top: 60px;
@@ -344,13 +364,6 @@
             border-top: 1px solid rgba(201, 169, 98, 0.2);
             color: var(--text-muted);
             font-style: italic;
-        }
-        .school-name {
-            font-family: 'Cinzel', serif;
-            color: var(--accent);
-            font-size: 1.2em;
-            margin-top: 10px;
-            letter-spacing: 2px;
         }
         .progress-bar {
             position: fixed;
@@ -361,6 +374,8 @@
             transition: width 0.3s ease;
             z-index: 1000;
         }
+        
+        /* Popup succes */
         .success-overlay {
             position: fixed;
             top: 0;
@@ -394,36 +409,12 @@
         .success-notification.show {
             transform: translate(-50%, -50%) scale(1);
         }
-        .success-icon {
-            font-size: 5em;
-            margin-bottom: 20px;
-        }
         .success-title {
             font-family: 'Cinzel', serif;
             font-size: 2.2em;
             color: var(--accent);
             margin-bottom: 20px;
             letter-spacing: 2px;
-        }
-        .success-message {
-            font-size: 1.2em;
-            line-height: 1.8;
-            margin-bottom: 15px;
-            color: var(--text-light);
-        }
-        .success-contact {
-            background: rgba(201, 169, 98, 0.1);
-            padding: 25px;
-            border-radius: 10px;
-            margin-top: 25px;
-            border-left: 4px solid var(--accent);
-            text-align: left;
-        }
-        .success-contact-title {
-            color: var(--accent);
-            font-weight: bold;
-            font-size: 1.2em;
-            margin-bottom: 15px;
         }
         .close-notification-btn {
             margin-top: 30px;
@@ -440,17 +431,9 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
         }
-        .close-notification-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(201, 169, 98, 0.6);
-        }
         @media (max-width: 768px) {
             h1 { font-size: 2em; }
             .card { padding: 20px; }
-            .success-notification {
-                width: 95%;
-                padding: 30px;
-            }
         }
     </style>
 </head>
@@ -461,15 +444,15 @@
     <div class="container">
         <header>
             <div class="elements-row">🔥 💨 🌍 💧 ⚡</div>
-            <h1>QUEL TYPE DE GUIDE ES-TU ?</h1>
-            <p class="subtitle">Questionnaire de Découverte</p>
+            <h1>TES ÉNERGIES DOMINANTES</h1>
+            <p class="subtitle">Diagnostic de tes corps subtils</p>
         </header>
         
         <div class="divider"></div>
         
         <form id="questionnaireForm">
             <div class="card">
-                <h2 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 25px; text-align: center;">INFORMATIONS PERSONNELLES</h2>
+                <h2 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 25px; text-align: center;">QUI ES-TU ?</h2>
                 
                 <div class="form-group">
                     <label for="prenom">Prénom *</label>
@@ -492,38 +475,36 @@
                     <input type="text" id="lieuNaissance" placeholder="Ville, Pays" required>
                 </div>
                 <label class="checkbox-group">
-                    <input type="checkbox" id="inscriptionAtelier">
-                    <span>Je m'inscris à l'atelier "Quel type de guide êtes-vous ?"</span>
+                    <input type="checkbox" id="inscriptionAtelier" checked>
+                    <span>Je souhaite recevoir les infos sur l'Atelier d'Activation</span>
                 </label>
             </div>
             
             <div class="card">
-                <h2 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 25px; text-align: center;">QUESTIONNAIRE</h2>
-                <p style="text-align: center; color: var(--text-muted); margin-bottom: 30px; font-style: italic;">Pour chaque question, choisis UNE SEULE réponse, celle qui te correspond le plus.</p>
-                
+                <h2 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 25px; text-align: center;">ANALYSE ÉNERGÉTIQUE</h2>
                 <div id="questionsContainer"></div>
             </div>
             
-            <button type="submit" class="submit-btn">Découvrir mon type de guide</button>
+            <button type="submit" class="submit-btn">Lancer l'Analyse</button>
         </form>
         
         <div class="results" id="results">
             <div class="result-card" id="resultCard"></div>
             
             <div class="card">
-                <h3 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 20px; text-align: center; font-size: 1.8em;">TES SCORES PAR ÉLÉMENT</h3>
+                <h3 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 20px; text-align: center; font-size: 1.8em;">RÉPARTITION DES ÉLÉMENTS</h3>
                 <div class="scores" id="scoresContainer"></div>
             </div>
             
             <div class="card" style="text-align: center;">
-                <h3 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 20px; font-size: 1.8em;">ET MAINTENANT ?</h3>
+                <h3 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 20px; font-size: 1.8em;">PROCHAINE ÉTAPE</h3>
                 <p style="font-size: 1.2em; line-height: 1.8; margin-bottom: 20px;">
-                    Tu connais maintenant ton type de Guide. C'est le premier pas.
+                    Ce résultat n'est qu'un constat. Savoir que tu as de l'énergie ne suffit pas à l'utiliser.
                 </p>
                 <div style="background: rgba(201, 169, 98, 0.1); padding: 30px; border-radius: 10px; margin-top: 20px;">
                     <p style="font-size: 1.3em; font-style: italic; color: var(--accent);">
-                        "Je te montre aujourd'hui,<br>
-                        demain tu fais ton propre chemin."
+                        "Sans maîtrise, la puissance n'est qu'un incendie.<br>
+                        Viens apprendre à tenir la flamme."
                     </p>
                     <p style="margin-top: 15px; color: var(--text-muted);">
                         --- Yann, Guide des 4 Corps
@@ -539,24 +520,19 @@
 
     <div class="success-overlay" id="successOverlay"></div>
     <div class="success-notification" id="successNotification">
-        <div class="success-icon">✅</div>
-        <h2 class="success-title">MESSAGE ENVOYÉ !</h2>
+        <div style="font-size: 4em; margin-bottom: 20px;">🔒</div>
+        <h2 class="success-title">ANALYSE TERMINÉE</h2>
         <p class="success-message">
-            Tes résultats ont été envoyés avec succès à ton adresse email.
-        </p>
-        <p class="success-message">
-            Tu devrais les recevoir dans quelques instants.
+            Ton profil énergétique a été détecté, mais certaines parties restent verrouillées.
         </p>
         <div class="success-contact">
-            <div class="success-contact-title">📧 Prochaines étapes</div>
             <p style="margin: 10px 0; color: var(--text-light);">
-                Nous te recontacterons par email pour t'informer du <strong style="color: var(--accent);">lieu</strong> et des <strong style="color: var(--accent);">modalités</strong> de l'atelier.
-            </p>
-            <p style="margin: 10px 0; color: var(--text-muted); font-size: 0.95em;">
-                Vérifie aussi tes <strong>spams</strong> si tu ne vois pas notre email !
+                Un premier rapport t'a été envoyé par email.
+                <br><br>
+                ⚠️ <strong>Attention :</strong> Tes résultats montrent un potentiel fort mais instable. Nous te contacterons pour l'atelier afin de t'apprendre à sécuriser ces capacités.
             </p>
         </div>
-        <button class="close-notification-btn" onclick="closeSuccessNotification()">Fermer</button>
+        <button class="close-notification-btn" onclick="closeSuccessNotification()">Accéder au résultat</button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
@@ -581,8 +557,6 @@
                 document.getElementById('successOverlay').classList.remove('show');
             }, 300);
         }
-
-        // Fermer en cliquant sur l'overlay
         document.getElementById('successOverlay').addEventListener('click', closeSuccessNotification);
 
         // Création des étoiles
@@ -596,7 +570,7 @@
             starsContainer.appendChild(star);
         }
 
-        // Questions du questionnaire
+        // Questions (Mêmes questions, pas de changement ici)
         const questions = [
             { number: 1, text: "Quand tu as un problème, tu préfères :", options: [
                 { value: "A", text: "Agir immédiatement, foncer" },
@@ -775,56 +749,52 @@
             ]}
         ];
 
-        // Profils des guides AVEC le teasing marketing
+        /* --- C'EST ICI QUE CA CHANGE --- 
+           On ne donne plus le titre "Guide". On donne un "Diagnostic" inquiétant. 
+           Et on FLOUTE la solution. */
         const guideProfiles = {
             A: { 
                 icon: "🔥", 
-                title: "GUIDE FEU", 
-                subtitle: "L'Éveilleur & Coupeur de Feu", 
-                strengths: "Action, courage, transformation, chaleur dans les mains", 
-                challenge: "Canaliser ta puissance sans te brûler", 
-                motto: "Je transforme, j'éveille, j'illumine",
-                workshopTease: "Ton feu est puissant mais peut te consumer. À l'atelier, tu apprendras la technique précise pour 'couper le feu' sans prendre le mal sur toi."
+                title: "ÉLÉMENT DOMINANT : FEU", 
+                subtitle: "DIAGNOSTIC : ÉNERGIE NON CANALISÉE", 
+                symptoms: "⚠️ <strong>Symptômes actuels :</strong> Colères soudaines, épuisement rapide après l'action, sensation de brûlure dans les mains, impatience chronique.", 
+                risk: "Sans initiation, ton feu te consume au lieu de guérir les autres.",
+                hidden_power: "Technique du Coupeur de Feu Ancestral"
             },
             B: { 
                 icon: "💨", 
-                title: "GUIDE AIR", 
-                subtitle: "Le Messager Multidimensionnel", 
-                strengths: "Signes, voyage astral, communication avec l'invisible", 
-                challenge: "Revenir sur terre, t'ancrer", 
-                motto: "Je traverse les voiles, je relie les mondes",
-                workshopTease: "Tu captes beaucoup de messages, mais sais-tu les trier ? À l'atelier, nous pratiquerons l'ancrage immédiat pour ne plus 'flotter' après une connexion."
+                title: "ÉLÉMENT DOMINANT : AIR", 
+                subtitle: "DIAGNOSTIC : DÉCONNEXION TERRESTRE", 
+                symptoms: "⚠️ <strong>Symptômes actuels :</strong> Difficulté à finir ce que tu commences, perte de notion du temps, 'tête qui tourne', fatigue mentale.", 
+                risk: "Tu captes des messages, mais sans ancrage, tu perds ta propre énergie vitale.",
+                hidden_power: "Protocole de Canalisation Sécurisée"
             },
             C: { 
                 icon: "🌍", 
-                title: "GUIDE TERRE", 
-                subtitle: "Le Guérisseur Ancré", 
-                strengths: "Stabilité, magnétisme des mains, connexion aux ancêtres", 
-                challenge: "T'ouvrir au subtil, lâcher le mental", 
-                motto: "Je stabilise, je guéris, je matérialise",
-                workshopTease: "Tu as des 'mains d'or' qui dorment. À l'atelier, tu toucheras la matière pour réveiller ce magnétisme concret et apprendre à scanner les corps."
+                title: "ÉLÉMENT DOMINANT : TERRE", 
+                subtitle: "DIAGNOSTIC : BLOCAGE DU SUBTIL", 
+                symptoms: "⚠️ <strong>Symptômes actuels :</strong> Lourdeur physique, résistance au changement, scepticisme qui bloque ton intuition, douleurs dorsales.", 
+                risk: "Tes mains ont un magnétisme puissant qui stagne et crée des douleurs physiques.",
+                hidden_power: "L'Art du Magnétisme Structurel"
             },
             D: { 
                 icon: "💧", 
-                title: "GUIDE EAU", 
-                subtitle: "Le Sensitif Émotionnel", 
-                strengths: "Empathie, purification, connexion lunaire", 
-                challenge: "Ne pas absorber les émotions des autres", 
-                motto: "Je ressens, je purifie, je fluidifie",
-                workshopTease: "Tu es une éponge émotionnelle. À l'atelier, je t'enseignerai le rituel de 'l'Imperméable' pour soigner les autres sans te rendre malade."
+                title: "ÉLÉMENT DOMINANT : EAU", 
+                subtitle: "DIAGNOSTIC : HYPER-PERMÉABILITÉ", 
+                symptoms: "⚠️ <strong>Symptômes actuels :</strong> Sautes d'humeur inexpliquées, fatigue en présence de foule, incapacité à dire non, épongisme émotionnel.", 
+                risk: "Tu absorbes les maladies et tristesses des autres. Tu te rends malade pour eux.",
+                hidden_power: "Rituel de l'Imperméabilité Émotionnelle"
             },
             E: { 
                 icon: "⚡", 
-                title: "GUIDE FOUDRE", 
-                subtitle: "Le Transmetteur Direct", 
-                strengths: "Rapidité, pendule, écriture automatique, intuition flash", 
-                challenge: "Gérer ton énergie, ne pas court-circuiter", 
-                motto: "Je canalise, je transmets, j'électrise",
-                workshopTease: "Ton intuition est fulgurante mais instable. À l'atelier, tu apprendras à déclencher cette connexion sur commande, sans attendre que l'orage frappe."
+                title: "ÉLÉMENT DOMINANT : FOUDRE", 
+                subtitle: "DIAGNOSTIC : COURT-CIRCUIT ÉNERGÉTIQUE", 
+                symptoms: "⚠️ <strong>Symptômes actuels :</strong> Insomnies électriques, objets qui cassent autour de toi, intuition fulgurante mais effrayante, anxiété.", 
+                risk: "Ton voltage est trop haut pour ton corps. Risque d'épuisement nerveux majeur.",
+                hidden_power: "Maîtrise du Flash Intuitif"
             }
         };
 
-        // Génération des questions
         const container = document.getElementById('questionsContainer');
         questions.forEach(q => {
             const div = document.createElement('div');
@@ -845,12 +815,10 @@
             container.appendChild(div);
         });
 
-        // Gestion du formulaire
         const form = document.getElementById('questionnaireForm');
         const resultsDiv = document.getElementById('results');
         const progressBar = document.getElementById('progressBar');
 
-        // Mise à jour de la barre de progression
         form.addEventListener('change', () => {
             const answeredQuestions = document.querySelectorAll('input[type="radio"]:checked').length;
             const progress = (answeredQuestions / 25) * 100;
@@ -860,7 +828,6 @@
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // Récupération des informations personnelles
             const prenom = document.getElementById('prenom').value.trim();
             const nom = document.getElementById('nom').value.trim();
             const email = document.getElementById('email').value.trim();
@@ -868,7 +835,6 @@
             const lieuNaissance = document.getElementById('lieuNaissance').value.trim();
             const inscriptionAtelier = document.getElementById('inscriptionAtelier').checked;
 
-            // Calcul des scores
             const scores = { A: 0, B: 0, C: 0, D: 0, E: 0 };
             
             for (let i = 1; i <= 25; i++) {
@@ -878,7 +844,6 @@
                 }
             }
 
-            // Trouver le type dominant
             const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
             const dominantType = sorted[0][0];
             const secondaryType = sorted[1][0];
@@ -886,46 +851,40 @@
             
             const profile = guideProfiles[dominantType];
 
-            // Affichage des résultats avec le TEASING ATELIER
+            // --- RESULTAT EN MODE "TEASING/MYSTÈRE" ---
             const resultCard = document.getElementById('resultCard');
             resultCard.innerHTML = `
                 <div class="result-icon">${profile.icon}</div>
                 <h2 class="result-title">${profile.title}</h2>
-                <h3 class="result-subtitle">${profile.subtitle}</h3>
+                <h3 class="result-subtitle" style="color: #ff4545;">${profile.subtitle}</h3>
                 
                 <div class="result-description">
-                    <p><strong style="color: var(--accent);">Tes forces innées :</strong><br> ${profile.strengths}</p>
-                    <p><strong style="color: var(--accent);">Ton défi actuel :</strong><br> ${profile.challenge}</p>
+                    <p style="margin-bottom: 15px;">${profile.symptoms}</p>
+                    <p style="color: #ff9999; font-style: italic;">"${profile.risk}"</p>
                 </div>
 
-                <div class="result-motto">"${profile.motto}"</div>
-
-                <div class="workshop-tease">
-                    <h4 style="color: var(--accent); font-family: 'Cinzel', serif; margin-bottom: 15px; font-size: 1.3em;">
-                        ⚠️ POURQUOI L'ATELIER EST VITAL POUR UN ${profile.title.toUpperCase()} ?
-                    </h4>
-                    <p style="font-size: 1.1em; line-height: 1.6; color: #fff;">
-                        ${profile.workshopTease}
-                    </p>
-                    <p style="margin-top: 15px; font-style: italic; color: var(--text-muted); font-size: 0.9em;">
-                        Le savoir théorique ne suffit pas. L'activation se fait en présence.
-                    </p>
+                <div class="locked-content">
+                    <div class="lock-overlay">
+                        <div class="lock-icon">🔒</div>
+                        <div class="lock-msg">RÉSERVÉ AUX INITIÉS</div>
+                    </div>
+                    <div class="blur-text">
+                        <h3>TON VRAI NOM DE GUIDE : GUIDE ${profile.title.split(': ')[1]}</h3>
+                        <p>Ta force secrète est : ${profile.hidden_power}.</p>
+                        <p>Pour l'activer, il faut utiliser le mudra de l'ouverture et réciter...</p>
+                        <p>Cette technique permet de soigner sans s'épuiser. Elle s'apprend par transmission directe.</p>
+                        <p>Ton animal totem est le Phoenix et ta direction est le Sud.</p>
+                    </div>
                 </div>
 
-                ${inscriptionAtelier ? `
-                    <div style="margin-top: 25px; padding: 15px; background: rgba(40, 167, 69, 0.2); border: 1px solid #28a745; border-radius: 8px;">
-                        <p style="font-size: 1.1em; color: #28a745; margin: 0; font-weight: bold;">
-                            ✓ Pré-inscription à l'atelier validée
-                        </p>
-                    </div>
-                ` : `
-                    <div style="margin-top: 25px;">
-                        <p style="color: var(--text-muted);">Tu n'as pas coché la case atelier... C'est dommage, ton profil ${profile.title} demande de la pratique pour être maîtrisé.</p>
-                    </div>
-                `}
+                <div style="margin-top: 25px; text-align: left;">
+                    <p style="color: var(--accent); font-size: 1.1em;">
+                        <strong>Pourquoi c'est flouté ?</strong><br>
+                        Ces informations sont des techniques puissantes. Je ne peux pas te les donner sans t'apprendre à te protéger d'abord. C'est l'objectif de l'atelier.
+                    </p>
+                </div>
             `;
 
-            // Affichage des scores
             const scoresContainer = document.getElementById('scoresContainer');
             scoresContainer.innerHTML = '';
             
@@ -943,7 +902,6 @@
                 scoresContainer.appendChild(scoreItem);
             });
 
-            // Préparation des données pour l'email
             const emailData = {
                 to_email: "runinstinct4@gmail.com",
                 user_email: email,
@@ -951,14 +909,10 @@
                 user_nom: nom,
                 date_naissance: dateNaissance,
                 lieu_naissance: lieuNaissance,
-                inscription_atelier: inscriptionAtelier ? "Oui" : "Non",
+                inscription_atelier: inscriptionAtelier ? "Intéressé(e)" : "Pas coché",
                 
                 type_dominant: profile.title,
-                type_icon: profile.icon,
-                type_subtitle: profile.subtitle,
-                forces: profile.strengths,
-                defi: profile.challenge,
-                devise: profile.motto,
+                diagnostic: profile.subtitle, // On envoie le diagnostic
                 
                 score_feu: scores.A,
                 score_air: scores.B,
@@ -969,36 +923,18 @@
                 type_secondaire: guideProfiles[secondaryType].title,
                 score_secondaire: secondaryScore,
                 
-                date_questionnaire: new Date().toLocaleDateString('fr-FR', { 
-                    weekday: 'long', 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric' 
-                }),
+                date_questionnaire: new Date().toLocaleDateString('fr-FR'),
                 heure_questionnaire: new Date().toLocaleTimeString('fr-FR')
             };
 
-            // Envoi de l'email via EmailJS
             try {
-                // On envoie les données
                 await emailjs.send("service_5vtkmvj", "template_bl42agu", emailData);
-                
-                // Si l'envoi réussit, on affiche les résultats et la belle notif
                 form.style.display = 'none';
                 resultsDiv.classList.add('show');
                 showSuccessNotification();
-                
-                // Scroll fluide vers le haut pour voir le résultat
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             } catch (error) {
-                // En cas d'erreur
-                console.error("❌ Erreur silencieuse lors de l'envoi:", error);
-                
-                // On affiche quand même les résultats pour ne pas bloquer le visiteur
+                console.error("❌ Erreur:", error);
                 form.style.display = 'none';
                 resultsDiv.classList.add('show');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
